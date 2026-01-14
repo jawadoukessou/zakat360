@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Version Pro') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- En-tête Pro -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body text-center py-5">
+                    <h1 class="display-4 mb-3">
+                        <i class="fas fa-crown me-2"></i>
+                        {{ 'الإصدار برو' if get_locale()|string == 'ar' else _('Version Pro') }}
+                    </h1>
+                    {% if subscription and subscription.status == 'active' %}
+<p class="lead">{{ _("Vous êtes membre Pro jusqu'au") }} {{ subscription.end_date.strftime('%d/%m/%Y') }}</p>
+                        <span class="badge bg-success fs-6">{{ _('Actif') }}</span>
+                    {% else %}
+                        <p class="lead">{{ _('Débloquez toutes les fonctionnalités avancées') }}</p>
+                        <a href="{{ url_for('subscriptions.upgrade') }}" class="btn btn-light btn-lg">
+                            {{ _('Passer Pro - 20 MAD/an') }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if current_user.is_pro %}
+        <!-- Tableau de bord Pro -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="feature-circle-md bg-primary text-white mx-auto mb-3">
+                            📅
+                        </div>
+                        <h5>{{ _('Dons Planifiés') }}</h5>
+                        <h3 class="text-primary">{{ scheduled_donations|length }}</h3>
+                        <p class="text-muted">{{ _('Automatiques actifs') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="feature-circle-md bg-success text-white mx-auto mb-3">
+                            💰
+                        </div>
+<h5>{{ _('Montant Total') }}</h5>
+                        <h3 class="text-success">
+                            {{ "%.2f"|format(scheduled_donations|sum(attribute='amount')) }} MAD
+                        </h3>
+                        <p class="text-muted">{{ _('Par cycle') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div class="feature-circle-md bg-info text-white mx-auto mb-3">
+                            ⚡
+                        </div>
+<h5>{{ _('Statut') }}</h5>
+                        <h3 class="text-info">{{ _('Pro') }}</h3>
+                        <p class="text-muted">{{ _('Membre actif') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions Pro -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            <i class="fas fa-cog me-2"></i>
+                            {{ 'المجدول التلقائي' if get_locale()|string == 'ar' else _('Planificateur Automatique') }}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">{{ _("Programmez vos dons pour qu'ils soient effectués automatiquement selon votre fréquence préférée.") }}</p>
+                        <a href="{{ url_for('subscriptions.schedule_donation') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>
+                            {{ _('Nouveau Don Automatique') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des dons planifiés -->
+        {% if scheduled_donations %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">{{ _('Mes Dons Automatiques') }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+<th>{{ _('Cause') }}</th>
+<th>{{ _('Montant') }}</th>
+                                        <th>{{ _('Fréquence') }}</th>
+                                        <th>{{ _('Prochaine Exécution') }}</th>
+                                        <th>{{ _('Actions') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for donation in scheduled_donations %}
+                                    <tr>
+                                        <td>
+                                            <strong>{{ donation.cause.title }}</strong>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success">{{ donation.amount }} MAD</span>
+                                        </td>
+                                        <td>
+                                            {% if donation.frequency == 'weekly' %}
+                                                <span class="badge bg-info">{{ _('Hebdomadaire') }}</span>
+                                            {% elif donation.frequency == 'monthly' %}
+                                                <span class="badge bg-primary">{{ _('Mensuel') }}</span>
+                                            {% elif donation.frequency == 'yearly' %}
+<span class="badge bg-warning">{{ _('Annuel') }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ donation.next_execution.strftime('%d/%m/%Y à %H:%M') }}</td>
+                                        <td>
+                                            <form method="POST" action="{{ url_for('subscriptions.cancel_scheduled_donation', schedule_id=donation.id) }}" class="d-inline">
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token }}"/>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                onclick="return confirm('{{ _('Êtes-vous sûr de vouloir annuler ce don automatique ?') }}')">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    {% else %}
+        <!-- Fonctionnalités Pro pour non-abonnés -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">{{ 'ميزات احترافية' if get_locale()|string == 'ar' else _('Fonctionnalités Pro') }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-circle-sm bg-primary text-white me-3">
+                                        📅
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">{{ 'المجدول التلقائي' if get_locale()|string == 'ar' else _('Planificateur Automatique') }}</h6>
+                                        <p class="text-muted mb-0">{{ _('Programmez vos dons récurrents') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-circle-sm bg-success text-white me-3">
+                                        📊
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">{{ _('Statistiques Avancées') }}</h6>
+                                        <p class="text-muted mb-0">{{ _('Analyses détaillées de vos dons') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-circle-sm bg-info text-white me-3">
+                                        🔔
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">{{ _('Notifications Personnalisées') }}</h6>
+                                        <p class="text-muted mb-0">{{ _('Rappels et alertes sur mesure') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-circle-sm bg-warning text-white me-3">
+                                        🎯
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">{{ _('Objectifs de Don') }}</h6>
+                                        <p class="text-muted mb-0">{{ _('Fixez et suivez vos objectifs') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('subscriptions.upgrade') }}" class="btn btn-primary btn-lg">
+                                {{ _('Débloquer Pro - 20 MAD/an') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Admin') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="h3"><i class="fas fa-tools me-2"></i>{{ _('Administration') }}</h1>
+<a href="{{ url_for('admin.causes') }}" class="btn btn-primary"><i class="fas fa-hand-holding-heart me-2"></i>{{ _('Causes') }}</a>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+.kpi-card .icon {
+    width: 42px; height: 42px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; color: #fff;
+}
+.icon-green { background: #16a34a; }
+.icon-blue { background: #2563eb; }
+.icon-cyan { background: #06b6d4; }
+.icon-orange { background: #f59e0b; }
+</style>
+{% endblock %}
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100 kpi-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="h5 text-muted mb-0">{{ _('Total dons') }}</div>
+                    <span class="icon icon-green"><i class="fas fa-donate"></i></span>
+                </div>
+                <div class="h5 text-muted mb-1">{{ _('Total dons') }}</div>
+                <div class="h3 fw-bold">{{ stats.donations }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100 kpi-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="h5 text-muted mb-0">{{ _("Dons aujourd'hui") }}</div>
+                    <span class="icon icon-blue"><i class="fas fa-calendar-day"></i></span>
+                </div>
+                <div class="h5 text-muted mb-1">{{ _("Dons aujourd'hui") }}</div>
+                <div class="h3 fw-bold">{{ stats.today }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100 kpi-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="h5 text-muted mb-0">{{ _('Dons ce mois') }}</div>
+                    <span class="icon icon-cyan"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <div class="h5 text-muted mb-1">{{ _('Dons ce mois') }}</div>
+                <div class="h3 fw-bold">{{ stats.month }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100 kpi-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="h5 text-muted mb-0">{{ _('Donateurs uniques') }}</div>
+                    <span class="icon icon-orange"><i class="fas fa-users"></i></span>
+                </div>
+                <div class="h5 text-muted mb-1">{{ _('Donateurs uniques') }}</div>
+                <div class="h3 fw-bold">{{ stats.unique_donors }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-3">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="h5 text-muted mb-1">{{ _('Cause la plus soutenue') }}</div>
+                <div class="h4 fw-bold">
+                    {% if stats.top_cause %}
+                        {{ stats.top_cause.name_fr if get_locale()|string == 'fr' and stats.top_cause.name_fr else stats.top_cause.name }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <a href="{{ url_for('admin.causes') }}" class="btn btn-primary">
+                    <i class="fas fa-hand-holding-heart me-2"></i>{{ _('Gestion des Causes') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-3">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">{{ _('Dons récents') }}</h5>
+                    <a href="{{ url_for('donations.index') }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-list me-1"></i>{{ _('Liste des Dons') }}</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>{{ _('Cause') }}</th>
+                                <th>{{ _('Montant') }}</th>
+                                <th>{{ _('Donateur') }}</th>
+                                <th>{{ _('Statut') }}</th>
+                                <th>{{ _('Date') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in recent %}
+                            <tr>
+                                <td>{{ d.cause_obj.name_fr if get_locale()|string == 'fr' and d.cause_obj.name_fr else d.cause_obj.name }}</td>
+                                <td>{{ '%.2f'|format(d.amount) }} €</td>
+                                <td>{{ d.donor }}</td>
+                                <td>
+                                    {% if d.status == 'completed' %}
+                                        <span class="badge bg-success">{{ _('Completed') }}</span>
+                                    {% else %}
+                                        <span class="badge bg-warning text-dark">{{ _('Pending') }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ d.created_at.strftime('%Y-%m-%d %H:%M') if d.created_at }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% if recent|length == 0 %}
+                            <tr><td colspan="5" class="text-muted">{{ _('Aucun don pour le moment') }}</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-3">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">{{ _('Répartition par catégorie') }}</h5>
+                    <span class="text-muted small">{{ _('Somme des montants') }}</span>
+                </div>
+                <canvas id="pieCategories" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="mb-0">{{ _('Montants par mois (année courante)') }}</h5>
+                    <span class="text-muted small">€</span>
+                </div>
+                <canvas id="barMonths" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const charts = {{ charts|tojson }};
+const colors = ['#16a34a','#2563eb','#06b6d4','#f59e0b','#ef4444','#8b5cf6','#10b981','#f43f5e','#22c55e','#0ea5e9','#eab308','#a855f7'];
+const ctxPie = document.getElementById('pieCategories');
+if (ctxPie && charts.categories.labels.length) {
+  new Chart(ctxPie, {
+    type: 'pie',
+    data: {
+      labels: charts.categories.labels,
+      datasets: [{ data: charts.categories.data, backgroundColor: colors.slice(0, charts.categories.labels.length) }]
+    },
+    options: { plugins: { legend: { position: 'bottom' } } }
+  });
+}
+const ctxBar = document.getElementById('barMonths');
+if (ctxBar) {
+  new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: charts.months.labels,
+      datasets: [{ label: '€', data: charts.months.data, backgroundColor: '#2563eb' }]
+    },
+    options: {
+      scales: { y: { beginAtZero: true } },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Faire un Don') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+        <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+            <div class="card-header bg-gradient text-white p-4" style="background-color: var(--brand-primary);">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="mb-1 fw-bold"><i class="fas fa-hand-holding-heart me-2"></i>{{ _('Faire un Don') }}</h2>
+                        <p class="mb-0 opacity-75">{{ _('Votre générosité change des vies.') }}</p>
+                    </div>
+                    <i class="fas fa-heart fa-3x opacity-25"></i>
+                </div>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                {% if causes %}
+                    <form method="POST" action="{{ url_for('donations.new') }}" enctype="multipart/form-data" id="donationForm">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        
+                        <!-- Step 1: Choose Cause -->
+                        <div class="mb-5">
+                            <h4 class="mb-3 text-primary border-bottom pb-2">{{ _('1. Choisissez une cause') }}</h4>
+                            <div class="mb-3">
+                                <label for="cause_id" class="form-label visually-hidden">{{ _('Choisir une cause') }}</label>
+                                <select class="form-select form-select-lg" id="cause_id" name="cause_id" required>
+                                    <option value="">{{ _('Sélectionnez une cause...') }}</option>
+                                    {% for cause in causes %}
+                                    <option value="{{ cause.id }}">{{ cause.name_fr if get_locale() == 'fr' and cause.name_fr else cause.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="row row-cols-1 row-cols-md-2 g-3 mt-2" id="cause-cards-container">
+                                {% for cause in causes %}
+                                <div class="col">
+                                    <div class="card h-100 cause-card border-2" data-cause-id="{{ cause.id }}">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <h5 class="card-title fw-bold text-dark">{{ cause.name_fr if get_locale() == 'fr' and cause.name_fr else cause.name }}</h5>
+                                                <i class="fas fa-check-circle text-primary opacity-0 check-icon transition-all"></i>
+                                            </div>
+                                            <p class="card-text text-muted small">{{ (cause.description_fr if get_locale() == 'fr' and cause.description_fr else cause.description)|truncate(80, False) }}</p>
+                                            <div class="mt-auto">
+                                                <div class="d-flex justify-content-between text-muted small mb-1">
+                                                    <span>{{ _('Collecté') }}</span>
+                                                    <span>{{ '%.0f'|format((cause.raised_amount|float / cause.target_amount|float * 100) if cause.target_amount else 0) }}%</span>
+                                                </div>
+                                                <div class="progress" style="height: 6px;">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ ((cause.raised_amount|float) / (cause.target_amount|float) * 100)|round(2) if cause.target_amount else 0 }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Amount -->
+                        <div class="mb-5">
+                            <h4 class="mb-3 text-primary border-bottom pb-2">{{ _('2. Montant du don') }}</h4>
+                            <label class="form-label">{{ _('Combien souhaitez-vous donner ?') }}</label>
+                            
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <button type="button" class="btn btn-outline-secondary preset-amount" data-amount="10">10 €</button>
+                                <button type="button" class="btn btn-outline-secondary preset-amount" data-amount="20">20 €</button>
+                                <button type="button" class="btn btn-outline-secondary preset-amount" data-amount="50">50 €</button>
+                                <button type="button" class="btn btn-outline-secondary preset-amount" data-amount="100">100 €</button>
+                                <button type="button" class="btn btn-outline-secondary preset-amount" data-amount="500">500 €</button>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light border-end-0">€</span>
+                                <input type="number" class="form-control border-start-0 ps-0" id="amount" name="amount" min="1" step="0.01" placeholder="{{ _('Autre montant') }}" required>
+                            </div>
+                            <div class="form-text"><i class="fas fa-info-circle me-1"></i>{{ _('Montant minimum : 1 €') }}</div>
+                        </div>
+
+                        <!-- Step 3: Payment Method -->
+                        <div class="mb-5">
+                            <h4 class="mb-3 text-primary border-bottom pb-2">{{ _('3. Moyen de paiement') }}</h4>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="payment_method" id="payment_card" value="card" checked>
+                                    <label class="btn btn-outline-primary w-100 p-4 h-100 d-flex flex-column align-items-center justify-content-center border-2 rounded-3" for="payment_card">
+                                        <i class="fas fa-credit-card fa-2x mb-3"></i>
+                                        <span class="fw-bold">{{ _('Carte Bancaire') }}</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="payment_method" id="payment_bank" value="bank_transfer">
+                                    <label class="btn btn-outline-primary w-100 p-4 h-100 d-flex flex-column align-items-center justify-content-center border-2 rounded-3" for="payment_bank">
+                                        <i class="fas fa-university fa-2x mb-3"></i>
+                                        <span class="fw-bold">{{ _('Virement') }}</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="radio" class="btn-check" name="payment_method" id="payment_paypal" value="paypal">
+                                    <label class="btn btn-outline-primary w-100 p-4 h-100 d-flex flex-column align-items-center justify-content-center border-2 rounded-3" for="payment_paypal">
+                                        <i class="fab fa-paypal fa-2x mb-3"></i>
+                                        <span class="fw-bold">PayPal</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Details -->
+                        <div class="mb-5">
+                            <h4 class="mb-3 text-primary border-bottom pb-2">{{ _('4. Vos informations') }}</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="donor_name" class="form-label">{{ _('Nom du donateur') }} <span class="text-muted">({{ _('Optionnel') }})</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control" id="donor_name" name="donor_name" placeholder="{{ _('Votre nom ou Anonyme') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">{{ _('Preuve du don') }} <span class="text-muted">({{ _('Optionnel') }})</span></label>
+                                    <input type="file" name="proof" accept=".png,.jpg,.jpeg,.pdf" class="form-control">
+                                    <small class="text-muted" style="font-size: 0.8rem;">Formats: .png, .jpg, .pdf — Max 5 MB</small>
+                                </div>
+                            </div>
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="anonymous" name="anonymous">
+                                <label class="form-check-label user-select-none" for="anonymous">
+                                    {{ _('Je souhaite rester anonyme') }}
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                            <a href="{{ url_for('donations.index') }}" class="btn btn-link text-muted text-decoration-none px-0">
+                                <i class="fas fa-arrow-left me-2"></i>{{ _('Annuler') }}
+                            </a>
+                            <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm rounded-pill fw-bold">
+                                <i class="fas fa-heart me-2"></i>{{ _('Confirmer le Don') }}
+                            </button>
+                        </div>
+                        
+                        <!-- Trust Badges -->
+                        <div class="text-center mt-4 text-muted small">
+                            <p class="mb-2"><i class="fas fa-lock me-1"></i> {{ _('Paiement sécurisé') }}</p>
+                            <div>
+                                <i class="fab fa-cc-visa fa-2x mx-1"></i>
+                                <i class="fab fa-cc-mastercard fa-2x mx-1"></i>
+                                <i class="fab fa-cc-amex fa-2x mx-1"></i>
+                            </div>
+                        </div>
+                    </form>
+                {% else %}
+                    <div class="text-center py-5">
+                        <div class="mb-4">
+                            <span class="fa-stack fa-3x text-warning">
+                                <i class="fas fa-circle fa-stack-2x opacity-25"></i>
+                                <i class="fas fa-exclamation-triangle fa-stack-1x"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-muted fw-bold">{{ _('Aucune cause disponible') }}</h3>
+                        <p class="text-muted mb-4">{{ _('Il n\'y a pas de causes actives pour le moment.') }}</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="{{ url_for('main.causes') }}" class="btn btn-primary rounded-pill px-4">
+                                <i class="fas fa-list me-2"></i>{{ _('Voir les causes') }}
+                            </a>
+                            <a href="{{ url_for('donations.index') }}" class="btn btn-outline-secondary rounded-pill px-4">
+                                <i class="fas fa-arrow-left me-2"></i>{{ _('Retour') }}
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.cause-card {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.cause-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.cause-card.selected {
+    border-color: var(--brand-primary);
+    background-color: rgba(44, 85, 48, 0.03);
+}
+.cause-card.selected .check-icon {
+    opacity: 1;
+}
+.preset-amount {
+    min-width: 80px;
+    border-radius: 50px;
+}
+.preset-amount.active {
+    background-color: var(--brand-primary);
+    color: white;
+    border-color: var(--brand-primary);
+}
+.btn-check:checked + .btn-outline-primary {
+    background-color: rgba(44, 85, 48, 0.1);
+    color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    box-shadow: inset 0 0 0 1px var(--brand-primary);
+}
+.btn-outline-primary {
+    color: var(--text-color);
+    border-color: #dee2e6;
+}
+.btn-outline-primary:hover {
+    background-color: #f8f9fa;
+    color: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+.transition-all {
+    transition: all 0.3s ease;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const causeCards = document.querySelectorAll('.cause-card');
+    const causeSelect = document.getElementById('cause_id');
+    const amountInput = document.getElementById('amount');
+    const presetButtons = document.querySelectorAll('.preset-amount');
+    const donationForm = document.getElementById('donationForm');
+    const paypalRadio = document.getElementById('payment_paypal');
+    const submitBtn = donationForm.querySelector('button[type="submit"]');
+    
+    // Cause Selection Logic
+    function selectCause(causeId) {
+        causeSelect.value = causeId;
+        
+        causeCards.forEach(c => {
+            if (c.dataset.causeId === causeId) {
+                c.classList.add('selected');
+            } else {
+                c.classList.remove('selected');
+            }
+        });
+    }
+
+    causeCards.forEach(card => {
+        card.addEventListener('click', function() {
+            selectCause(this.dataset.causeId);
+        });
+    });
+    
+    causeSelect.addEventListener('change', function() {
+        selectCause(this.value);
+    });
+
+    // Preset Amounts Logic
+    presetButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all
+            presetButtons.forEach(b => b.classList.remove('active'));
+            // Add active to clicked
+            this.classList.add('active');
+            // Set input value
+            amountInput.value = this.dataset.amount;
+        });
+    });
+
+    // Clear preset selection when typing custom amount
+    amountInput.addEventListener('input', function() {
+        presetButtons.forEach(b => b.classList.remove('active'));
+    });
+    
+    // Pre-select first cause if none selected
+    if (!causeSelect.value && causeCards.length > 0) {
+        // Optional: Select the first one automatically
+        // selectCause(causeCards[0].dataset.causeId);
+    } else if (causeSelect.value) {
+        selectCause(causeSelect.value);
+    }
+
+    donationForm.addEventListener('submit', async function(e) {
+        const method = donationForm.querySelector('input[name="payment_method"]:checked')?.value;
+        if (method !== 'paypal') return;
+        e.preventDefault();
+        const causeId = causeSelect.value;
+        const amount = amountInput.value;
+        if (!causeId || !amount || Number(amount) <= 0) {
+            alert('Veuillez sélectionner une cause et saisir un montant valide.');
+            return;
+        }
+        submitBtn.disabled = true;
+        try {
+            const resp = await fetch('/payments/paypal/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: String(amount), cause_id: Number(causeId) })
+            });
+            if (!resp.ok) {
+                const err = await resp.json().catch(() => ({}));
+                alert('Erreur PayPal: ' + (err.detail || resp.statusText));
+                submitBtn.disabled = false;
+                return;
+            }
+            const data = await resp.json();
+            const link = (data.links || []).find(l => l.rel === 'approve');
+            if (link && link.href) {
+                window.location.href = link.href;
+                return;
+            }
+            alert('Lien d’approbation PayPal introuvable.');
+        } catch (e2) {
+            alert('Erreur réseau PayPal.');
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+});
+</script>
+{% endblock %}

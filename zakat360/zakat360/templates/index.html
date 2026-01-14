@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Accueil') }} - Zakat360{% endblock %}
+
+{% block content %}
+<section id="hero" class="hero-banner position-relative text-center text-dark py-5" aria-label="Présentation">
+    <div class="hero-pattern"></div>
+    <div class="container position-relative">
+<h1 class="hero-title mb-3">{{ _('Bienvenue sur Zakat360') }}</h1>
+<p class="hero-tagline mb-4">{{ _('Plateforme de dons et de zakat, moderne et transparente.') }}</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{{ url_for('donations.new') }}" class="btn cta-gradient btn-lg d-inline-flex align-items-center">
+<i class="fas fa-heart me-2 pulse-heart"></i>{{ _('Faire un Don') }}
+            </a>
+            <a href="{{ url_for('zakat.form') }}" class="btn btn-outline-dark btn-lg rounded-pill">
+<i class="fas fa-calculator me-2"></i>{{ _('Calculer ma Zakat') }}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Mini sommaire sticky (desktop) -->
+<style>
+  html { scroll-behavior: smooth; }
+  @media (min-width: 768px) {
+    .mini-toc { z-index: 1020; background-color: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-bottom: 1px solid rgba(0,0,0,0.06); }
+  }
+  /* Assure un offset correct au scroll avec la barre sticky */
+  section, .row[id] { scroll-margin-top: 5rem; }
+  .mini-toc .nav-link { font-weight: 600; color: #495057; border-radius: 999px; padding: 0.35rem 0.75rem; transition: color .2s ease, background-color .2s ease, box-shadow .2s ease, transform .15s ease; }
+  .mini-toc .nav-link i { color: #6c757d; transition: color .2s ease; }
+  .mini-toc .nav-link:hover { color: #0d6efd; background-color: #f8fafc; transform: translateY(-1px); }
+  .mini-toc .nav-link:hover i { color: #0d6efd; }
+  .mini-toc .nav-link.active { color: #0d6efd; background-color: #f0f6ff; box-shadow: 0 0 0 2px rgba(13,110,253,0.15) inset; }
+  .mini-toc .nav-link.active i { color: #0d6efd; }
+</style>
+<nav class="mini-toc sticky-top d-none d-md-block border-bottom">
+  <div class="container py-2">
+    <ul class="nav nav-pills justify-content-center gap-2">
+      <li class="nav-item"><a class="nav-link" href="#why"><i class="fas fa-circle-info me-2"></i>{{ _('Pourquoi') }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#how"><i class="fas fa-book-open me-2"></i>{{ _('Comment la Zakat') }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#cta"><i class="fas fa-rocket me-2"></i>{{ _('Appel à l’action') }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#impact"><i class="fas fa-chart-line me-2"></i>{{ _('Notre Impact') }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#offers"><i class="fas fa-tags me-2"></i>{{ _('Nos Offres') }}</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const links = document.querySelectorAll('.mini-toc .nav-link');
+    const targets = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        const link = document.querySelector('.mini-toc .nav-link[href="#' + id + '"]');
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0.2 });
+    targets.forEach(t => observer.observe(t));
+  });
+</script>
+
+<!-- (Nos Offres) section déplacée en bas selon l'ordre demandé -->
+
+<!-- Features Section -->
+<div id="why" class="row mb-5">
+    <div class="col-12">
+        <h2 class="section-title text-center mb-5">{{ _('Pourquoi choisir Zakat360 ?') }}</h2>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft">
+            <div class="feature-circle feature-circle-lg feature-blue">🔒</div>
+            <h4 class="mb-2">{{ _('Sécurisé') }}</h4>
+            <p class="text-muted mb-0">{{ _('Dons traités avec les dernières technologies de sécurité.') }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft">
+            <div class="feature-circle feature-circle-lg feature-green">🔍</div>
+            <h4 class="mb-2">{{ _('Transparent') }}</h4>
+<p class="text-muted mb-0">{{ _('Suivi clair de l’impact et des montants collectés.') }}</p>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft">
+            <div class="feature-circle feature-circle-lg feature-cyan">👥</div>
+            <h4 class="mb-2">{{ _('Communautaire') }}</h4>
+            <p class="text-muted mb-0">{{ _('Une communauté engagée pour un monde meilleur.') }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- How Zakat Works Section (déplacée ici) -->
+<div id="how" class="row my-5">
+    <div class="col-12">
+        <h2 class="section-title text-center mb-4">{{ _('Comment ça marche la Zakat ?') }}</h2>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft h-100">
+            <div class="feature-circle feature-circle-lg feature-blue">🧮</div>
+            <h5 class="mb-2">{{ _('1) Calculer l’assiette') }}</h5>
+            <p class="text-muted mb-0">{{ _('Additionnez vos avoirs éligibles (liquidités, or/argent, investissements, stock, créances) et déduisez vos dettes à court terme.') }}</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft h-100">
+            <div class="feature-circle feature-circle-lg feature-green">⚖️</div>
+            <h5 class="mb-2">{{ _('2) Vérifier le nisab') }}</h5>
+            <p class="text-muted mb-0">{{ _('Si l’assiette atteint le seuil (base Or ≈85g, base Argent ≈595g) durant une année lunaire, la Zakat devient due.') }}</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft h-100">
+            <div class="feature-circle feature-circle-lg feature-cyan">📈</div>
+            <h5 class="mb-2">{{ _('3) Appliquer le taux 2,5%%') }}</h5>
+            <p class="text-muted mb-0">{{ _('Calculez 2,5%% (1/40e) de la richesse nette éligible au terme d’une année lunaire (hawl).') }}</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="icon-card text-center p-4 rounded-4 shadow-soft h-100">
+            <div class="feature-circle feature-circle-lg feature-orange">🤝</div>
+            <h5 class="mb-2">{{ _('4) Distribuer aux ayants droit') }}</h5>
+            <p class="text-muted mb-0">{{ _('Choisissez des causes légitimes et distribuez votre Zakat en toute sécurité via Zakat360.') }}</p>
+        </div>
+    </div>
+    <div class="col-12 text-center mt-3">
+        <a href="{{ url_for('zakat.form') }}" class="btn btn-outline-dark rounded-pill me-2">
+            <i class="fas fa-calculator me-2"></i>{{ _('Utiliser le Calculateur') }}
+        </a>
+        <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary rounded-pill">
+            <i class="fas fa-book me-2"></i>{{ _('Méthodologie détaillée') }}
+        </a>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div id="cta" class="row">
+    <div class="col-12">
+        <div class="text-center">
+            <h3 class="mb-3 icon-title justify-content-center"><span class="emoji-badge">🚀</span><span>{{ _('Prêt à faire la différence ?') }}</span></h3>
+            <p class="text-muted mb-4">{{ _("Chaque don compte, peu importe sa taille. Commencez dès aujourd'hui !") }}</p>
+            <a href="{{ url_for('donations.new') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-heart me-2"></i>{{ _('Commencer à Donner') }}
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- How Zakat Works Section -->
+<div id="impact" class="row mb-5">
+    <div class="col-12">
+        <div class="bg-light rounded p-4">
+            <h3 class="text-center mb-4 icon-title justify-content-center"><span class="emoji-badge">📊</span><span>{{ _('Notre Impact') }}</span></h3>
+            <div class="row text-center">
+                <div class="col-md-3 mb-3">
+                    <div class="h2 text-primary mb-1">
+                        <i class="fas fa-donate me-2"></i>{{ total_donations }}
+                    </div>
+                    <p class="text-muted mb-0">{{ _('Dons collectés') }}</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="h2 text-success mb-1">
+                        <i class="fas fa-euro-sign me-2"></i>{{ "%.2f"|format(total_amount) }}
+                    </div>
+                    <p class="text-muted mb-0">{{ _('Euros collectés') }}</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="h2 text-info mb-1">
+                        <i class="fas fa-heart me-2"></i>{{ supported_causes }}
+                    </div>
+                    <p class="text-muted mb-0">{{ _('Causes soutenues') }}</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="h2 text-warning mb-1">
+                        <i class="fas fa-users me-2"></i>{{ donors }}
+                    </div>
+                    <p class="text-muted mb-0">{{ _('Donateurs') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Nos Offres (placée à la fin) -->
+<div id="offers" class="row mb-5 justify-content-center">
+    <div class="col-12">
+        <h2 class="section-title text-center mb-5">{{ _('Nos Offres') }}</h2>
+    </div>
+    <div class="col-md-5 col-lg-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 text-center">
+            <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                <h4 class="fw-bold mb-0 text-muted">{{ _('Gratuit') }}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">0 <small class="text-muted fw-light">DH</small></h1>
+                <ul class="list-unstyled mt-3 mb-4 text-start mx-auto" style="max-width: 200px;">
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Calculateur de Zakat') }}</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Faire des dons ponctuels') }}</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Accès aux causes') }}</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Historique des dons') }}</li>
+                </ul>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-lg btn-outline-primary w-100 rounded-pill">{{ 'إنشاء حساب' if get_locale()|string == 'ar' else _("S'inscrire") }}</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-lg-4 mb-4">
+        <div class="card h-100 border-primary shadow rounded-4 text-center position-relative overflow-hidden">
+            <div class="position-absolute top-0 end-0 bg-warning text-dark px-3 py-1 rounded-bottom-start fw-bold small">{{ _('Populaire') }}</div>
+            <div class="card-header bg-transparent border-0 pt-4 pb-0">
+                <h4 class="fw-bold mb-0 text-primary">{{ _('Premium') }}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">20 <small class="text-muted fw-light">{{ _('DH/an') }}</small></h1>
+                <ul class="list-unstyled mt-3 mb-4 text-start mx-auto" style="max-width: 240px;">
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i><strong>{{ _('Tout du plan Gratuit') }}</strong></li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Dons planifiés automatiques') }}</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Rapports fiscaux détaillés') }}</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Badge Donateur Pro') }} <i class="fas fa-crown text-warning"></i></li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Support prioritaire') }}</li>
+                </ul>
+                <a href="{{ url_for('subscriptions.upgrade') }}" class="btn btn-lg btn-primary w-100 rounded-pill">{{ _('Devenir Premium') }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

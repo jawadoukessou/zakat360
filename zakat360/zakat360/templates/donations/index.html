@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Liste des Dons') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="icon-title"><span class="emoji-badge">🎁</span>{{ _('Liste des Dons') }}</h1>
+            <a href="{{ url_for('donations.new') }}" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>{{ _('Faire un Don') }}
+            </a>
+        </div>
+
+        {% if donations %}
+            <div class="row">
+                {% for donation in donations %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            {% set is_fr = (get_locale()|string == 'fr') %}
+                            <h5 class="card-title">
+                                {% if donation.cause %}
+                                    {{ (donation.cause.name_fr if is_fr and donation.cause.name_fr else donation.cause.name) }}
+                                {% else %}
+                                    {{ _('Cause inconnue') }}
+                                {% endif %}
+                            </h5>
+                            <p class="card-text text-muted">
+                                {% if donation.cause and (donation.cause.description_fr or donation.cause.description) %}
+                                    {{ (donation.cause.description_fr if is_fr and donation.cause.description_fr else donation.cause.description)[:100] }}...
+                                {% else %}
+                                    {{ _('Aucune description') }}
+                                {% endif %}
+                            </p>
+                            <div class="mb-2">
+                                <strong class="text-success">{{ donation.amount }} €</strong>
+                            </div>
+                            <div class="mb-2">
+                                <span class="badge bg-{{ 'success' if donation.status == 'completed' else 'warning' }}">
+                                    {{ _('Completed') if donation.status == 'completed' else _('Pending') }}
+                                </span>
+                            </div>
+                            <small class="text-muted">
+                                <i class="fas fa-calendar me-1"></i>{{ donation.created_at.strftime('%d/%m/%Y') if donation.created_at else _('Date inconnue') }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-heart fa-3x text-muted mb-3"></i>
+                <h3 class="text-muted">{{ _('Aucun don pour le moment') }}</h3>
+                <p class="text-muted mb-4">{{ _('Soyez le premier à faire une différence !') }}</p>
+                <a href="{{ url_for('donations.new') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus me-2"></i>{{ _('Faire mon Premier Don') }}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

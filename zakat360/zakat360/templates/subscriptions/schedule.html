@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Planifier un Don Automatique') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- En-tête -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 mb-3">
+                    <i class="fas fa-calendar-plus text-primary me-2"></i>
+                    Planifier un Don Automatique
+                </h1>
+                <p class="lead text-muted">Programmez vos dons pour qu'ils soient effectués automatiquement</p>
+            </div>
+
+            <!-- Formulaire de planification -->
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-gradient-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-cog me-2"></i>
+                        Configuration du Don Automatique
+                    </h4>
+                </div>
+                <div class="card-body p-5">
+                    <form method="POST" action="{{ url_for('subscriptions.schedule_donation') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}"/>
+                        
+<!-- {{ _('Sélection de la cause') }} -->
+                        <div class="mb-4">
+<label for="cause_id" class="form-label fw-bold">
+                                <i class="fas fa-heart text-danger me-2"></i>
+{{ _('Choisir une Cause') }}
+                            </label>
+<select class="form-select form-select-lg" id="cause_id" name="cause_id" required>
+<option value="">{{ _('Sélectionnez une cause...') }}</option>
+                                {% for cause in causes %}
+                                <option value="{{ cause.id }}">
+{{ (cause.title or (cause.name_fr if get_locale() == 'fr' and cause.name_fr else cause.name)) }} - {{ (cause.description_fr if get_locale() == 'fr' and cause.description_fr else cause.description)|truncate(80, False) }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
+{{ _('Choisissez la cause que vous souhaitez soutenir régulièrement') }}
+                            </div>
+                        </div>
+
+<!-- {{ _('Montant') }} -->
+                        <div class="mb-4">
+                            <label for="amount" class="form-label fw-bold">
+                                <i class="fas fa-coins text-warning me-2"></i>
+{{ _('Montant du Don') }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <input type="number" class="form-control" id="amount" name="amount" 
+                                       min="10" step="0.01" placeholder="100.00" required>
+                                <span class="input-group-text">MAD</span>
+                            </div>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
+{{ _('Montant minimum : 10 MAD') }}
+                            </div>
+                        </div>
+
+                        <!-- Fréquence -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-clock text-info me-2"></i>
+                                {{ _('Fréquence de Don') }}
+                            </label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card h-100 frequency-option">
+                                        <div class="card-body text-center">
+                                            <input type="radio" class="btn-check" name="frequency" id="weekly" value="weekly" required>
+                                            <label class="btn btn-outline-primary w-100 h-100 d-flex flex-column justify-content-center" for="weekly">
+                                                <div class="feature-circle-sm bg-primary text-white mx-auto mb-2">
+                                                    📅
+                                                </div>
+                                                <strong>{{ _('Hebdomadaire') }}</strong>
+                                                <small class="text-muted">{{ _('Chaque semaine') }}</small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 frequency-option">
+                                        <div class="card-body text-center">
+                                            <input type="radio" class="btn-check" name="frequency" id="monthly" value="monthly" required>
+                                            <label class="btn btn-outline-success w-100 h-100 d-flex flex-column justify-content-center" for="monthly">
+                                                <div class="feature-circle-sm bg-success text-white mx-auto mb-2">
+                                                    🗓️
+                                                </div>
+                                                <strong>{{ _('Mensuel') }}</strong>
+                                                <small class="text-muted">{{ _('Chaque mois') }}</small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 frequency-option">
+                                        <div class="card-body text-center">
+                                            <input type="radio" class="btn-check" name="frequency" id="yearly" value="yearly" required>
+                                            <label class="btn btn-outline-warning w-100 h-100 d-flex flex-column justify-content-center" for="yearly">
+                                                <div class="feature-circle-sm bg-warning text-white mx-auto mb-2">
+                                                    📆
+                                                </div>
+<strong>{{ _('Annuel') }}</strong>
+                                                <small class="text-muted">{{ _('Chaque année') }}</small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Récapitulatif -->
+                        <div class="alert alert-light border mb-4">
+                            <h6 class="alert-heading">
+                                <i class="fas fa-info-circle text-info me-2"></i>
+                                {{ _('Comment ça fonctionne ?') }}
+                            </h6>
+                            <ul class="mb-0">
+                                <li>{{ _('Votre don sera automatiquement effectué selon la fréquence choisie') }}</li>
+                                <li>{{ _('Vous recevrez une notification avant chaque don automatique') }}</li>
+<li>{{ _('Vous pouvez modifier ou annuler vos dons planifiés à tout moment') }}</li>
+                                <li>{{ _('Les dons automatiques sont considérés comme payés lors de leur exécution') }}</li>
+                            </ul>
+                        </div>
+
+                        <!-- Boutons d'action -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('subscriptions.index') }}" class="btn btn-outline-secondary btn-lg">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                {{ _('Retour') }}
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-save me-2"></i>
+                                {{ _('Programmer le Don') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Avantages -->
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-circle-md bg-success text-white mx-auto mb-3">
+                            ⚡
+                        </div>
+                        <h5>{{ _('Automatique') }}</h5>
+                        <p class="text-muted">{{ _('Plus besoin d\'y penser, vos dons sont effectués automatiquement') }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-circle-md bg-primary text-white mx-auto mb-3">
+                            🎯
+                        </div>
+                        <h5>{{ _('Régulier') }}</h5>
+                        <p class="text-muted">{{ _('Maintenez une régularité dans vos contributions caritatives') }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-circle-md bg-info text-white mx-auto mb-3">
+                            🔧
+                        </div>
+                        <h5>{{ _('Flexible') }}</h5>
+                        <p class="text-muted">{{ _('Modifiez ou annulez vos dons planifiés à tout moment') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.frequency-option .card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.frequency-option .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-check:checked + .btn {
+    background-color: var(--bs-primary);
+    color: white;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Passer Pro') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- En-tête -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 mb-3">
+                    <i class="fas fa-crown text-warning me-2"></i>
+                    {{ _('Passez à la Version Pro') }}
+                </h1>
+                <p class="lead text-muted">{{ _('Débloquez toutes les fonctionnalités avancées pour seulement 20 MAD par an') }}</p>
+            </div>
+
+            <!-- Carte de tarification -->
+            <div class="card shadow-lg border-0 mb-5">
+                <div class="card-header text-white text-center py-4" style="background-color: var(--green);">
+                    <h2 class="mb-0">{{ _('Version Pro') }}</h2>
+                    <div class="mt-3">
+                        <span class="display-3 fw-bold">20</span>
+                        <span class="fs-4">{{ _('MAD/an') }}</span>
+                    </div>
+                    <p class="mb-0 opacity-75">{{ _('Abonnement symbolique') }}</p>
+                </div>
+                <div class="card-body p-5">
+                    <!-- Fonctionnalités incluses -->
+                    <h5 class="mb-4">✨ {{ _('Fonctionnalités incluses :') }}</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>{{ _('Planificateur Automatique') }}</strong>
+                                    <br><small class="text-muted">{{ _('Programmez vos dons récurrents') }}</small>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>{{ _('Statistiques Avancées') }}</strong>
+                                    <br><small class="text-muted">{{ _('Analyses détaillées de vos contributions') }}</small>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>{{ _('Notifications Personnalisées') }}</strong>
+                                    <br><small class="text-muted">{{ _('Rappels et alertes sur mesure') }}</small>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>{{ _('Objectifs de Don') }}</strong>
+                                    <br><small class="text-muted">{{ _('Fixez et suivez vos objectifs annuels') }}</small>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>{{ _('Support Prioritaire') }}</strong>
+                                    <br><small class="text-muted">{{ _('Assistance dédiée aux membres Pro') }}</small>
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    <strong>{{ _('Nouvelles Fonctionnalités') }}</strong>
+                                    <br><small class="text-muted">{{ _('Accès anticipé aux nouveautés') }}</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire d'abonnement -->
+                    <div class="text-center mt-5">
+                        <form method="POST" action="{{ url_for('subscriptions.upgrade') }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}"/>
+                            
+                            <div class="alert alert-info mb-4">
+                                <i class="fas fa-info-circle me-2"></i>
+<strong>{{ _('Abonnement symbolique :') }}</strong> {{ _('Ce montant modique nous aide à maintenir et améliorer la plateforme pour tous.') }}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg px-5 py-3">
+                                <i class="fas fa-crown me-2"></i>
+                                {{ _('Devenir Membre Pro - 20 MAD') }}
+                            </button>
+                        </form>
+                        
+                        <p class="text-muted mt-3 mb-0">
+                            <small>
+                                <i class="fas fa-shield-alt me-1"></i>
+                                {{ _('Paiement sécurisé • Annulation possible à tout moment') }}
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Témoignages -->
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-circle-md bg-primary text-white mx-auto mb-3">
+                                👤
+                            </div>
+                            <blockquote class="blockquote">
+                                <p class="mb-3">{{ _("Le planificateur automatique m'aide à être régulier dans mes dons. C'est formidable !") }}</p>
+                                <footer class="blockquote-footer">
+                                    <cite title="Source Title">{{ _('Ahmed, membre Pro') }}</cite>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-circle-md bg-success text-white mx-auto mb-3">
+                                👤
+                            </div>
+                            <blockquote class="blockquote">
+                                <p class="mb-3">{{ _("Les statistiques m'aident à mieux planifier mes contributions annuelles.") }}</p>
+                                <footer class="blockquote-footer">
+                                    <cite title="Source Title">{{ _('Fatima, membre Pro') }}</cite>
+                                </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">{{ _('Questions Fréquentes') }}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                    {{ _('Pourquoi un abonnement payant ?') }}
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+{{ _("L'abonnement symbolique de 20 MAD par an nous aide à maintenir les serveurs, développer de nouvelles fonctionnalités et offrir un support de qualité. C'est un montant minimal qui assure la pérennité de la plateforme.") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                    {{ _('Puis-je annuler mon abonnement ?') }}
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    {{ _("Oui, vous pouvez annuler votre abonnement à tout moment. Vous conserverez l'accès aux fonctionnalités Pro jusqu'à la fin de votre période d'abonnement.") }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                    {{ _('Comment fonctionne le planificateur automatique ?') }}
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+{{ _("Vous définissez le montant, la cause et la fréquence (hebdomadaire, mensuelle ou annuelle). Le système effectue automatiquement vos dons selon votre planning, vous permettant de maintenir une régularité dans vos contributions.") }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

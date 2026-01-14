@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('À propos & Méthode de Calcul') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-dark mb-3">{{ _('À propos de Zakat360') }}</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">
+            {{ _('Une plateforme moderne et transparente dédiée à faciliter le calcul et la distribution de votre Zakat en toute sécurité.') }}
+        </p>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="p-4 bg-light rounded-4 border">
+                <h3 class="fw-bold mb-3 text-primary"><i class="fas fa-bullseye me-2"></i>{{ _('Notre Mission') }}</h3>
+                <p class="mb-0 text-muted">
+                    {{ _("Nous visons à simplifier l'obligation religieuse de la Zakat grâce à la technologie.") }}
+                    {{ _("Zakat360 offre des outils précis pour le calcul et garantit que vos dons atteignent") }}
+                    {{ _('ceux qui en ont le plus besoin, avec une traçabilité complète.') }}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="p-3 border rounded-3 text-center h-100">
+                        <div class="fs-1 mb-2">🤝</div>
+                        <h5 class="fw-bold">{{ _('Confiance') }}</h5>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border rounded-3 text-center h-100">
+                        <div class="fs-1 mb-2">📊</div>
+                        <h5 class="fw-bold">{{ _('Précision') }}</h5>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border rounded-3 text-center h-100">
+                        <div class="fs-1 mb-2">🔒</div>
+                        <h5 class="fw-bold">{{ _('Sécurité') }}</h5>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border rounded-3 text-center h-100">
+                        <div class="fs-1 mb-2">🌍</div>
+                        <h5 class="fw-bold">{{ _('Impact') }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5 opacity-25">
+
+    <!-- Calculation Method Section -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <div class="feature-circle feature-circle-md feature-green mb-3 mx-auto">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h2 class="fw-bold">{{ _('Comment calculons-nous la Zakat ?') }}</h2>
+                <p class="text-muted">{{ _('Notre méthode suit strictement les règles de la jurisprudence islamique (Fiqh).') }}</p>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 me-3">
+                                    <span class="fw-bold fs-5">1</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">{{ _('Le Nisab (Seuil)') }}</h5>
+                                    <p class="text-muted small mb-0">
+                                        {{ _("C'est le montant minimum de richesse qu'un musulman doit posséder pour être éligible à la Zakat.") }}
+                                        {{ _("Il est calculé sur la base de la valeur de 85g d'or (ou 595g d'argent).") }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 me-3">
+                                    <span class="fw-bold fs-5">2</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">{{ _('Le Hawl (Cycle Lunaire)') }}</h5>
+                                    <p class="text-muted small mb-0">
+                                        {{ _('La richesse doit être en votre possession pendant une année lunaire complète (environ 354 jours) sans descendre en dessous du Nisab.') }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 me-3">
+                                    <span class="fw-bold fs-5">3</span>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold">{{ _('Le Taux (2.5%%)') }}</h5>
+                                    <p class="text-muted small mb-0">
+                                        {{ _('Une fois les conditions remplies, 2.5%% (ou 1/40ème) de votre richesse totale éligible doit être donnée en Zakat.') }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info border-0 rounded-4 d-flex align-items-center" role="alert">
+                <i class="fas fa-info-circle fs-4 me-3"></i>
+                <div>
+                    <strong>{{ _('Note Importante :') }}</strong> {{ _("Les cours de l'or et de l'argent sont mis à jour régulièrement pour assurer un calcul précis du Nisab.") }}
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="{{ url_for('zakat.form') }}" class="btn btn-primary btn-lg rounded-pill px-5">
+                    <i class="fas fa-calculator me-2"></i>{{ _('Calculer ma Zakat maintenant') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

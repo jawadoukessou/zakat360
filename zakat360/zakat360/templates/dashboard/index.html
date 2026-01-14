@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Tableau de bord') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="h3"><i class="fas fa-chart-line me-2"></i>{{ _('Tableau de bord') }}</h1>
+        <a href="{{ url_for('donations.new') }}" class="btn btn-primary"><i class="fas fa-plus me-2"></i>{{ _('Faire un Don') }}</a>
+    </div>
+</div>
+
+<!-- Cards de métriques -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="h4 mb-1">{{ total_amount }} €</div>
+                        <div class="text-muted">{{ _('Montant total collecté') }}</div>
+                    </div>
+                    <i class="fas fa-coins fa-2x text-success"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="h4 mb-1">{{ total_donations }}</div>
+                        <div class="text-muted">{{ _('Nombre de dons') }}</div>
+                    </div>
+                    <i class="fas fa-donate fa-2x text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="h4 mb-1">{{ total_causes }}</div>
+                        <div class="text-muted">{{ _('Causes actives') }}</div>
+                    </div>
+                    <i class="fas fa-hand-holding-heart fa-2x text-info"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="h4 mb-1">{{ total_users }}</div>
+                        <div class="text-muted">{{ _('Utilisateurs') }}</div>
+                    </div>
+                    <i class="fas fa-users fa-2x text-secondary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<!-- Top causes -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-light">
+                <strong><i class="fas fa-star me-2"></i>{{ _('Top causes (collecte)') }}</strong>
+            </div>
+            <div class="card-body">
+                {% if top_causes %}
+                    <ul class="list-group list-group-flush">
+                        {% for cause in top_causes %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ cause.name_fr if get_locale() == 'fr' and cause.name_fr else cause.name }}</span>
+                                <span class="badge bg-success">{{ cause.raised_amount or 0 }} €</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted mb-0">{{ _('Aucune cause disponible.') }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Dons récents -->
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-light">
+                <strong><i class="fas fa-clock me-2"></i>{{ _('Dons récents') }}</strong>
+            </div>
+            <div class="card-body">
+                {% if recent_donations %}
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>{{ _('Cause') }}</th>
+                                    <th>{{ _('Montant') }}</th>
+                                    <th>{{ _('Donateur') }}</th>
+                                    <th>{{ _('Date') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for d in recent_donations %}
+                                    <tr>
+                                        <td>
+                                            {% if d.cause %}
+                                                {{ d.cause.name_fr if get_locale() == 'fr' and d.cause.name_fr else d.cause.name }}
+                                            {% else %}
+                                                —
+                                            {% endif %}
+                                        </td>
+                                        <td><strong>{{ d.amount }}</strong> €</td>
+                                        <td>{{ d.donor_name or (d.user.username if d.user else 'Anonyme') }}</td>
+                                        <td>{{ d.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted mb-0">{{ _('Aucun don pour le moment.') }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+ </div>
+
+<!-- Graphique mensuel des dons -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <strong><i class="fas fa-chart-bar me-2"></i>{{ _('Dons par mois (année courante)') }}</strong>
+            </div>
+            <div class="card-body" style="height: 320px; position: relative;">
+                <div id="chartError" class="alert alert-danger d-none"></div>
+                <div id="debugData" class="d-none">
+                    Labels: {{ month_labels|tojson }} <br>
+                    Data: {{ month_totals|tojson }}
+                </div>
+                <canvas id="donationsByMonth" width="1000" height="300"
+                        data-labels='{{ month_labels|tojson }}'
+                        data-values='{{ month_totals|tojson }}'></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Charge Chart.js local -->
+<script src="{{ url_for('static', filename='js/chart.min.js') }}" defer></script>
+<!-- Script externe pour le graphique (compatible CSP) -->
+<script src="{{ url_for('static', filename='js/dashboard_chart.js') }}" defer></script>
+{% endblock %}

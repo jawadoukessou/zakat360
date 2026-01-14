@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Mon Profil') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+<!-- {{ _('Informations Profil') }} -->
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-circle feature-circle-lg feature-blue mb-3">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ user.username }}</h3>
+<p class="text-muted mb-3">{{ user.email }}</p>
+                    
+                    {% if user.is_admin %}
+                    <span class="badge bg-danger rounded-pill mb-2 px-3 py-2">
+                        <i class="fas fa-shield-alt me-1"></i> Administrateur
+                    </span>
+                    {% endif %}
+                    
+                    {% if user.is_pro %}
+                    <span class="badge bg-warning text-dark rounded-pill mb-2 px-3 py-2">
+                        <i class="fas fa-crown me-1"></i> Membre Pro
+                    </span>
+                    {% else %}
+                    <span class="badge bg-secondary rounded-pill mb-2 px-3 py-2">
+                        <i class="fas fa-user me-1"></i> Membre Standard
+                    </span>
+                    {% endif %}
+                    
+                    <hr class="my-4 opacity-10">
+                    
+                    <div class="text-start small">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Membre depuis:</span>
+                            <span class="fw-semibold">{{ user.created_at.strftime('%d/%m/%Y') if user.created_at else 'N/A' }}</span>
+                        </div>
+                        {% if user.oauth_provider %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Connecté via:</span>
+                            <span class="fw-semibold text-capitalize">
+                                <i class="fab fa-{{ user.oauth_provider }} me-1"></i>{{ user.oauth_provider }}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Actions & Sécurité -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h4 class="fw-bold mb-0"><i class="fas fa-lock me-2 text-primary"></i>Sécurité</h4>
+                </div>
+                <div class="card-body p-4">
+                    {% if user.oauth_provider %}
+                        <div class="alert alert-info border-0 rounded-3">
+                            <i class="fas fa-info-circle me-2"></i>
+{{ _('Votre compte est lié à') }} <strong>{{ user.oauth_provider|capitalize }}</strong>. {{ _("Vous n'avez pas besoin de mot de passe.") }}
+                        </div>
+                    {% else %}
+                        <form method="POST" action="{{ url_for('auth.profile') }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}"/>
+                            
+                            <div class="mb-3">
+<label for="current_password" class="form-label fw-semibold">{{ _('Mot de passe actuel') }}</label>
+                                <input type="password" class="form-control bg-light" id="current_password" name="current_password" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+<label for="new_password" class="form-label fw-semibold">{{ _('Nouveau mot de passe') }}</label>
+                                    <input type="password" class="form-control bg-light" id="new_password" name="new_password" required minlength="6">
+                                </div>
+                                <div class="col-md-6 mb-3">
+<label for="confirm_password" class="form-label fw-semibold">{{ _('Confirmer le nouveau mot de passe') }}</label>
+                                    <input type="password" class="form-control bg-light" id="confirm_password" name="confirm_password" required minlength="6">
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                    <i class="fas fa-save me-2"></i>Mettre à jour
+                                </button>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Zone de danger / Export -->
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h4 class="fw-bold mb-0"><i class="fas fa-cog me-2 text-secondary"></i>Actions du compte</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded-3 h-100 bg-light">
+<h6 class="fw-bold"><i class="fas fa-download me-2 text-primary"></i>{{ _('Exporter mes données') }}</h6>
+                                <p class="small text-muted mb-3">Téléchargez une copie de vos données personnelles et de vos dons.</p>
+                                <a href="{{ url_for('auth.export_account') }}" class="btn btn-outline-primary btn-sm rounded-pill w-100">
+{{ _('Exporter (JSON)') }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border border-danger border-opacity-25 rounded-3 h-100 bg-danger bg-opacity-10">
+<h6 class="fw-bold text-danger"><i class="fas fa-trash-alt me-2"></i>{{ _('Supprimer mon compte') }}</h6>
+                                <p class="small text-muted mb-3">Cette action est irréversible. Vos dons seront anonymisés.</p>
+<form action="{{ url_for('auth.delete_account') }}" method="POST" onsubmit="return confirm('{{ _('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.') }}');">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}"/>
+                                    <button type="submit" class="btn btn-danger btn-sm rounded-pill w-100">
+ {{ _('Supprimer définitivement') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

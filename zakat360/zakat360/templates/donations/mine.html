@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Mes Dons') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-history me-2"></i>Mes Dons</h1>
+            <div>
+                <a href="{{ url_for('donations.new') }}" class="btn btn-primary me-2">
+<i class="fas fa-plus me-2"></i>{{ _('Faire un Don') }}
+                </a>
+                <a href="{{ url_for('donations.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-list me-2"></i>Liste publique
+                </a>
+            </div>
+        </div>
+
+        <form method="GET" action="{{ url_for('donations.mine') }}" class="row g-3 mb-4">
+            <div class="col-md-3">
+<label for="start_date" class="form-label">{{ _('Date début') }}</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date or '' }}">
+            </div>
+            <div class="col-md-3">
+<label for="end_date" class="form-label">{{ _('Date fin') }}</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date or '' }}">
+            </div>
+            <div class="col-md-3">
+<label for="cause_id" class="form-label">{{ _('Cause') }}</label>
+                <select class="form-select" id="cause_id" name="cause_id">
+<option value="">{{ _('Toutes les causes') }}</option>
+                    {% for c in causes %}
+                        <option value="{{ c.id }}" {% if selected_cause_id and (selected_cause_id | int) == c.id %}selected{% endif %}>{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-outline-primary me-2">
+                    <i class="fas fa-filter me-2"></i>Filtrer
+                </button>
+                <a class="btn btn-outline-secondary me-2" href="{{ url_for('donations.mine') }}">
+                    <i class="fas fa-undo me-2"></i>Réinitialiser
+                </a>
+                <a class="btn btn-success" href="{{ url_for('donations.mine_export', start_date=start_date, end_date=end_date, cause_id=selected_cause_id) }}">
+<i class="fas fa-file-csv me-2"></i>{{ _('Exporter CSV') }}
+                </a>
+            </div>
+        </form>
+
+        <div class="alert alert-info d-flex align-items-center justify-content-between" role="alert">
+            <div>
+                <i class="fas fa-sigma me-2"></i>
+                <strong>Total période:</strong>
+                <span class="ms-1">{{ '%.2f'|format(total_amount) }} €</span>
+                {% if start_date or end_date %}
+<span class="ms-2 text-muted">({{ start_date or '—' }} → {{ end_date or '—' }})</span>
+                {% endif %}
+                {% if selected_cause_id %}
+<span class="ms-2 text-muted">{{ _('Cause') }}: {{ (causes|selectattr('id', 'equalto', selected_cause_id|int)|list|first.name_fr if get_locale() == 'fr' and selected_cause_id and (causes|selectattr('id', 'equalto', selected_cause_id|int)|list|first.name_fr) else (causes|selectattr('id', 'equalto', selected_cause_id|int)|list|first.name if selected_cause_id else _('Toutes')) }}</span>
+                {% endif %}
+            </div>
+            <span class="badge bg-primary">{{ donations|length }} dons</span>
+        </div>
+
+        {% if donations %}
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+<th scope="col">{{ _('Date') }}</th>
+<th scope="col">{{ _('Cause') }}</th>
+<th scope="col" class="text-end">{{ _('Montant (€)') }}</th>
+<th scope="col">{{ _('Statut') }}</th>
+                            <th scope="col">Nom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for donation in donations %}
+                        <tr>
+                            <td>
+                                <i class="fas fa-calendar me-1"></i>
+{{ donation.created_at.strftime('%d/%m/%Y') if donation.created_at else _('Date inconnue') }}
+                            </td>
+                            <td>
+{{ (donation.cause.name_fr if get_locale() == 'fr' and donation.cause and donation.cause.name_fr else (donation.cause.name if donation.cause else _('Cause inconnue'))) }}
+                                {% if donation.cause and (donation.cause.description or donation.cause.description_fr) %}
+                                <div class="text-muted small">{{ (donation.cause.description_fr if get_locale() == 'fr' and donation.cause.description_fr else donation.cause.description)|truncate(80, False) }}</div>
+                                {% endif %}
+                            </td>
+                            <td class="text-end"><strong class="text-success">{{ donation.amount }}</strong></td>
+                            <td>
+                                <span class="badge bg-{{ 'success' if donation.status == 'completed' else 'warning' }}">
+                                    {{ donation.status.title() }}
+                                </span>
+                            </td>
+                            <td>{{ donation.donor_name or '—' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2" class="text-end">Total</th>
+                            <th class="text-end"><strong>{{ '%.2f'|format(total_amount) }}</strong></th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                <h3 class="text-muted">Aucun don enregistré</h3>
+                <p class="text-muted mb-4">Vous n'avez pas encore de dons associés à votre compte.</p>
+                <a href="{{ url_for('donations.new') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus me-2"></i>Faire mon premier don
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

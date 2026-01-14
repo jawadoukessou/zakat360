@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Résultat Zakat') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="h3 icon-title"><span class="emoji-badge">📊</span>Résultat du calcul</h1>
+<a href="{{ url_for('zakat.form') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>{{ _('Retour') }}</a>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="h4 mb-1">{{ assiette }} MAD</div>
+                <div class="text-muted">Assiette</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="h4 mb-1">{{ nisab }} MAD</div>
+                <div class="text-muted">Nisab (base {{ basis }})</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <div class="h4 mb-1">{{ zakat_due }} MAD</div>
+<div class="text-muted">{{ _('Zakat due (2,5%%)') }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>Références prix</strong> — Or: {{ prix_or }} MAD/g, Argent: {{ prix_argent }} MAD/g
+ </div>
+
+<a href="{{ url_for('donations.new') }}" class="btn btn-primary"><i class="fas fa-hand-holding-heart me-2"></i>{{ _('Distribuer ma Zakat') }}</a>
+ 
+<!-- Bloc d'explications sur la Zakat (résumé) -->
+<div class="card mt-4 shadow-sm">
+    <div class="card-header d-flex align-items-center">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>{{ _('Explications sur la Zakat') }}</strong>
+    </div>
+    <div class="card-body">
+        <p class="mb-3">{{ _('Vous devez 2,5%% de votre richesse nette éligible si l’assiette atteint le nisab pendant une année lunaire.') }}</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-2">{{ _('Nisab et base') }}</h6>
+                <p class="mb-2">{{ _('Le nisab dépend de la base choisie (Or ou Argent). Les prix utilisés ci‑dessus sont ceux du jour.') }}</p>
+                <ul class="mb-0">
+                    <li>{{ _('Base Or : ~85 g d’or') }}</li>
+                    <li>{{ _('Base Argent : ~595 g d’argent') }}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-2">{{ _('Assiette et déductions') }}</h6>
+                <ul class="mb-0">
+                    <li>{{ _('Inclure : liquidités, métaux précieux, investissements licites, stocks, créances recouvrables') }}</li>
+                    <li>{{ _('Déduire : dettes à court terme exigibles') }}</li>
+                    <li>{{ _('Exclure : résidence principale, biens d’usage, retraite bloquée, outils de travail') }}</li>
+                </ul>
+            </div>
+        </div>
+        <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary btn-sm mt-3"><i class="fas fa-book me-2"></i>{{ _('Voir la méthodologie complète') }}</a>
+    </div>
+</div>
+{% endblock %}

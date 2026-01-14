@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Inscription') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <div class="feature-circle feature-circle-md feature-blue mb-3">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <h2 class="fw-bold text-dark">Rejoignez-nous</h2>
+            <p class="text-muted">Créez un compte pour commencer à donner.</p>
+          </div>
+
+          <form method="POST" action="{{ url_for('auth.register') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+            
+            <div class="mb-3">
+              <label for="username" class="form-label fw-semibold">Nom d'utilisateur</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="fas fa-user text-muted"></i></span>
+                <input type="text" class="form-control bg-light border-start-0 ps-0" id="username" name="username" placeholder="Votre nom" required />
+              </div>
+            </div>
+
+            <div class="mb-3">
+<label for="email" class="form-label fw-semibold">{{ _('Email') }}</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+<input type="email" class="form-control bg-light border-start-0 ps-0" id="email" name="email" placeholder="{{ _('votre@email.com') }}" required />
+              </div>
+            </div>
+            
+            <div class="mb-4">
+<label for="password" class="form-label fw-semibold">{{ _('Mot de passe') }}</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="fas fa-lock text-muted"></i></span>
+                <input type="password" class="form-control bg-light border-start-0 ps-0" id="password" name="password" placeholder="••••••••" required />
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 mb-3">
+              <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm hover-lift">
+<i class="fas fa-user-plus me-2"></i>{{ _("S'inscrire") }}
+              </button>
+            </div>
+
+            <div class="position-relative text-center mb-3">
+              <hr class="text-muted opacity-25">
+              <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted small">OU</span>
+            </div>
+
+            <div class="d-grid gap-2">
+              <a href="{{ url_for('auth.login_google') }}" class="btn btn-outline-danger rounded-pill">
+<i class="fab fa-google me-2"></i>{{ _("S'inscrire avec Google") }}
+              </a>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer bg-light border-0 py-3 text-center">
+<p class="mb-0 text-muted">{{ _('Déjà un compte ?') }} <a href="{{ url_for('auth.login') }}" class="text-decoration-none fw-bold text-primary">{{ _('Se connecter') }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1262 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-12-08 00:08+0100\n"
+"PO-Revision-Date: 2025-12-07 20:42+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+# About page
+#: zakat360/zakat360/templates/about.html:3
+msgid "À propos & Méthode de Calcul"
+msgstr "عن الموقع وطريقة الحساب"
+
+#: zakat360/zakat360/templates/about.html:9
+msgid "À propos de Zakat360"
+msgstr "عن منصة زكات360"
+
+#: zakat360/zakat360/templates/about.html:11
+msgid ""
+"Une plateforme moderne et transparente dédiée à faciliter le calcul et la"
+" distribution de votre Zakat en toute sécurité."
+msgstr "منصة حديثة وشفافة لتسهيل حساب وتوزيع الزكاة بأمان."
+
+#: zakat360/zakat360/templates/about.html:19
+msgid "Notre Mission"
+msgstr "مهمتنا"
+
+#: zakat360/zakat360/templates/about.html:21
+msgid ""
+"Nous visons à simplifier l'obligation religieuse de la Zakat grâce à la "
+"technologie."
+msgstr "نهدف إلى تبسيط فريضة الزكاة باستخدام التكنولوجيا."
+
+#: zakat360/zakat360/templates/about.html:22
+msgid ""
+"Zakat360 offre des outils précis pour le calcul et garantit que vos dons "
+"atteignent"
+msgstr "توفر زكات360 أدوات دقيقة للحساب وتضمن وصول تبرعاتكم"
+
+#: zakat360/zakat360/templates/about.html:23
+msgid "ceux qui en ont le plus besoin, avec une traçabilité complète."
+msgstr "إلى الأكثر حاجة مع تتبع كامل."
+
+#: zakat360/zakat360/templates/about.html:32
+msgid "Confiance"
+msgstr "ثقة"
+
+#: zakat360/zakat360/templates/about.html:38
+msgid "Précision"
+msgstr "دقة"
+
+#: zakat360/zakat360/templates/about.html:44
+msgid "Sécurité"
+msgstr "أمان"
+
+#: zakat360/zakat360/templates/about.html:50
+msgid "Impact"
+msgstr "أثر"
+
+#: zakat360/zakat360/templates/about.html:66
+msgid "Comment calculons-nous la Zakat ?"
+msgstr "كيف نحسب الزكاة؟"
+
+#: zakat360/zakat360/templates/about.html:67
+msgid ""
+"Notre méthode suit strictement les règles de la jurisprudence islamique "
+"(Fiqh)."
+msgstr "طريقتنا تتبع بدقة أحكام الفقه الإسلامي."
+
+#: zakat360/zakat360/templates/about.html:79
+msgid "Le Nisab (Seuil)"
+msgstr "النصاب (الحد)"
+
+#: zakat360/zakat360/templates/about.html:81
+msgid ""
+"C'est le montant minimum de richesse qu'un musulman doit posséder pour "
+"être éligible à la Zakat."
+msgstr "هو الحد الأدنى من المال الذي يجب أن يملكه المسلم ليجب عليه الزكاة."
+
+#: zakat360/zakat360/templates/about.html:82
+msgid "Il est calculé sur la base de la valeur de 85g d'or (ou 595g d'argent)."
+msgstr "يُحسب بناءً على قيمة 85غ ذهب (أو 595غ فضة)."
+
+#: zakat360/zakat360/templates/about.html:93
+msgid "Le Hawl (Cycle Lunaire)"
+msgstr "الحول (سنة قمرية)"
+
+#: zakat360/zakat360/templates/about.html:95
+msgid ""
+"La richesse doit être en votre possession pendant une année lunaire "
+"complète (environ 354 jours) sans descendre en dessous du Nisab."
+msgstr ""
+"يجب أن تبقى الثروة لديك سنة قمرية كاملة (حوالي 354 يوماً) دون أن تقل عن "
+"النصاب."
+
+#: zakat360/zakat360/templates/about.html:106
+#, python-format
+msgid "Le Taux (2.5%%)"
+msgstr "النسبة (2.5%%)"
+
+#: zakat360/zakat360/templates/about.html:108
+#, python-format
+msgid ""
+"Une fois les conditions remplies, 2.5%% (ou 1/40ème) de votre richesse "
+"totale éligible doit être donnée en Zakat."
+msgstr "بعد تحقق الشروط، يجب إخراج 2.5%% (أو واحد من أربعين) من الثروة المؤهلة."
+
+#: zakat360/zakat360/templates/about.html:120
+msgid "Note Importante :"
+msgstr "ملاحظة مهمة:"
+
+#: zakat360/zakat360/templates/about.html:120
+msgid ""
+"Les cours de l'or et de l'argent sont mis à jour régulièrement pour "
+"assurer un calcul précis du Nisab."
+msgstr "تُحدّث أسعار الذهب والفضة بانتظام لضمان حساب دقيق للنصاب."
+
+#: zakat360/zakat360/templates/about.html:126
+msgid "Calculer ma Zakat maintenant"
+msgstr "احسب زكاتي الآن"
+
+#: zakat360/zakat360/templates/base.html:132
+#: zakat360/zakat360/templates/index.html:3
+msgid "Accueil"
+msgstr "الرئيسية"
+
+#: zakat360/zakat360/templates/base.html:137
+msgid "Calculateur"
+msgstr "حاسبة الزكاة"
+
+#: zakat360/zakat360/templates/admin/index.html:9
+#: zakat360/zakat360/templates/admin/index.html:25
+#: zakat360/zakat360/templates/base.html:142
+#: zakat360/zakat360/templates/donations/causes.html:3
+#: zakat360/zakat360/templates/donations/causes.html:8
+msgid "Causes"
+msgstr "القضايا"
+
+#: zakat360/zakat360/templates/base.html:147
+msgid "À propos"
+msgstr "عن الموقع"
+
+#: zakat360/zakat360/templates/base.html:153
+#: zakat360/zakat360/templates/dashboard/index.html:3
+#: zakat360/zakat360/templates/dashboard/index.html:8
+msgid "Tableau de bord"
+msgstr "لوحة التحكم"
+
+#: zakat360/zakat360/templates/base.html:159
+msgid "Dons"
+msgstr "التبرعات"
+
+#: zakat360/zakat360/templates/base.html:164
+#: zakat360/zakat360/templates/dashboard/index.html:9
+#: zakat360/zakat360/templates/donations/index.html:11
+#: zakat360/zakat360/templates/donations/mine.html:12
+#: zakat360/zakat360/templates/donations/new.html:3
+#: zakat360/zakat360/templates/donations/new.html:12
+#: zakat360/zakat360/templates/index.html:13
+msgid "Faire un Don"
+msgstr "تبرع الآن"
+
+# Additional base footer and subscription texts
+#: zakat360/zakat360/templates/base.html:171
+msgid "Pro"
+msgstr "احترافي"
+
+#: zakat360/zakat360/templates/base.html:171
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:3
+msgid "Passer Pro"
+msgstr "الترقية إلى احترافي"
+
+#: zakat360/zakat360/templates/base.html:193
+msgid "Profil"
+msgstr "الملف الشخصي"
+
+#: zakat360/zakat360/templates/base.html:194
+#: zakat360/zakat360/templates/donations/mine.html:3
+msgid "Mes Dons"
+msgstr "تبرعاتي"
+
+#: zakat360/zakat360/templates/base.html:196
+msgid "Déconnexion"
+msgstr "تسجيل الخروج"
+
+#: zakat360/zakat360/templates/auth/login.html:3
+#: zakat360/zakat360/templates/base.html:201
+msgid "Connexion"
+msgstr "تسجيل الدخول"
+
+#: zakat360/zakat360/templates/auth/register.html:3
+#: zakat360/zakat360/templates/base.html:204
+msgid "Inscription"
+msgstr "إنشاء حساب"
+
+#: zakat360/zakat360/templates/base.html:237
+msgid "Plateforme de dons et de zakat pour un monde meilleur."
+msgstr "منصة للتبرعات والزكاة من أجل عالم أفضل."
+
+#: zakat360/zakat360/templates/base.html:240
+msgid "Tous droits réservés."
+msgstr "جميع الحقوق محفوظة."
+
+#: zakat360/zakat360/templates/base.html:241
+msgid "Développé avec"
+msgstr "تم التطوير بمحبة"
+
+#: zakat360/zakat360/templates/base.html:241
+msgid "pour la communauté"
+msgstr "لخدمة المجتمع"
+
+#: zakat360/zakat360/templates/index.html:9
+msgid "Bienvenue sur Zakat360"
+msgstr "مرحبًا بك في زكات360"
+
+#: zakat360/zakat360/templates/index.html:10
+msgid "Plateforme de dons et de zakat, moderne et transparente."
+msgstr "منصة حديثة وشفافة للتبرعات والزكاة."
+
+#: zakat360/zakat360/templates/index.html:16
+msgid "Calculer ma Zakat"
+msgstr "احسب زكاتي"
+
+#: zakat360/zakat360/templates/index.html:25
+msgid "Pourquoi choisir Zakat360 ?"
+msgstr "لماذا تختار زكات360؟"
+
+#: zakat360/zakat360/templates/index.html:38
+msgid "Suivi clair de l’impact et des montants collectés."
+msgstr "متابعة واضحة للأثر والمبالغ المُجمّعة."
+ 
+# Home features
+#: zakat360/zakat360/templates/index.html:76
+msgid "Sécurisé"
+msgstr "آمن"
+ 
+#: zakat360/zakat360/templates/index.html:77
+msgid "Dons traités avec les dernières technologies de sécurité."
+msgstr "التبرعات تُعالج بأحدث تقنيات الأمان."
+ 
+#: zakat360/zakat360/templates/index.html:84
+msgid "Transparent"
+msgstr "شفاف"
+ 
+#: zakat360/zakat360/templates/index.html:92
+msgid "Communautaire"
+msgstr "مجتمعي"
+ 
+#: zakat360/zakat360/templates/index.html:92
+msgid "Une communauté engagée pour un monde meilleur."
+msgstr "مجتمع ملتزم من أجل عالم أفضل."
+ 
+# How section
+#: zakat360/zakat360/templates/index.html:100
+msgid "Comment ça marche la Zakat ?"
+msgstr "كيف تعمل الزكاة؟"
+ 
+#: zakat360/zakat360/templates/index.html:105
+msgid "1) Calculer l’assiette"
+msgstr "١) حساب الوعاء"
+ 
+#: zakat360/zakat360/templates/index.html:106
+msgid "Additionnez vos avoirs éligibles (liquidités, or/argent, investissements, stock, créances) et déduisez vos dettes à court terme."
+msgstr "اجمع أموالك المؤهلة (السيولة، الذهب/الفضة، الاستثمارات، المخزون، الذمم) واطرح ديونك القصيرة الأجل."
+ 
+#: zakat360/zakat360/templates/index.html:112
+msgid "2) Vérifier le nisab"
+msgstr "٢) التحقق من النصاب"
+ 
+#: zakat360/zakat360/templates/index.html:113
+msgid "Si l’assiette atteint le seuil (base Or ≈85g, base Argent ≈595g) durant une année lunaire, la Zakat devient due."
+msgstr "إذا بلغ الوعاء النصاب (ذهب ≈٨٥غ، فضة ≈٥٩٥غ) خلال عام قمري، وجبت الزكاة."
+ 
+#: zakat360/zakat360/templates/index.html:119
+msgid "3) Appliquer le taux 2,5%%"
+msgstr "٣) تطبيق نسبة ٢٫٥%%"
+ 
+#: zakat360/zakat360/templates/index.html:120
+msgid "Calculez 2,5%% (1/40e) de la richesse nette éligible au terme d’une année lunaire (hawl)."
+msgstr "احسب ٢٫٥%% (جزء من أربعين) من الثروة الصافية المؤهلة عند نهاية العام القمري."
+ 
+#: zakat360/zakat360/templates/index.html:126
+msgid "4) Distribuer aux ayants droit"
+msgstr "٤) التوزيع على المستحقين"
+ 
+#: zakat360/zakat360/templates/index.html:127
+msgid "Choisissez des causes légitimes et distribuez votre Zakat en toute sécurité via Zakat360."
+msgstr "اختر أسبابًا مشروعة ووزّع زكاتك بأمان عبر زكات360."
+ 
+#: zakat360/zakat360/templates/index.html:132
+msgid "Utiliser le Calculateur"
+msgstr "استخدام الحاسبة"
+ 
+#: zakat360/zakat360/templates/index.html:135
+msgid "Méthodologie détaillée"
+msgstr "المنهجية التفصيلية"
+ 
+# CTA section
+#: zakat360/zakat360/templates/index.html:145
+msgid "Prêt à faire la différence ?"
+msgstr "هل أنت مستعد لإحداث فرق؟"
+ 
+#: zakat360/zakat360/templates/index.html:146
+msgid "Chaque don compte, peu importe sa taille. Commencez dès aujourd'hui !"
+msgstr "كل تبرع يُحدث فرقًا مهما كان حجمه. ابدأ اليوم!"
+ 
+#: zakat360/zakat360/templates/index.html:148
+msgid "Commencer à Donner"
+msgstr "ابدأ بالتبرع"
+ 
+# Impact section
+#: zakat360/zakat360/templates/index.html:157
+msgid "Notre Impact"
+msgstr "أثرنا"
+ 
+#: zakat360/zakat360/templates/index.html:163
+msgid "Dons collectés"
+msgstr "التبرعات المُجمّعة"
+ 
+#: zakat360/zakat360/templates/index.html:169
+msgid "Euros collectés"
+msgstr "اليورو المُجمّعة"
+ 
+#: zakat360/zakat360/templates/index.html:181
+msgid "Donateurs"
+msgstr "المتبرعون"
+ 
+# Offers section
+#: zakat360/zakat360/templates/index.html:191
+msgid "Nos Offres"
+msgstr "عروضنا"
+ 
+#: zakat360/zakat360/templates/index.html:196
+msgid "Gratuit"
+msgstr "مجاني"
+ 
+#: zakat360/zakat360/templates/index.html:202
+msgid "Faire des dons ponctuels"
+msgstr "تبرعات فورية"
+ 
+#: zakat360/zakat360/templates/index.html:204
+msgid "Historique des dons"
+msgstr "سجل التبرعات"
+ 
+#: zakat360/zakat360/templates/index.html:212
+msgid "Populaire"
+msgstr "شائع"
+ 
+#: zakat360/zakat360/templates/index.html:214
+msgid "Premium"
+msgstr "مميز"
+ 
+#: zakat360/zakat360/templates/index.html:220
+msgid "Tout du plan Gratuit"
+msgstr "كل مزايا الخطة المجانية"
+ 
+#: zakat360/zakat360/templates/index.html:221
+msgid "Rapports fiscaux détaillés"
+msgstr "تقارير ضريبية مُفصلة"
+ 
+#: zakat360/zakat360/templates/index.html:223
+msgid "Support prioritaire"
+msgstr "دعم مُخصص"
+ 
+#: zakat360/zakat360/templates/index.html:225
+msgid "Devenir Premium"
+msgstr "الترقية إلى المميز"
+ 
+# Subscriptions texts
+#: zakat360/zakat360/templates/subscriptions/index.html:170
+msgid "Programmez vos dons récurrents"
+msgstr "جدولة تبرعاتك المتكررة"
+ 
+# Subscriptions index newly wrapped strings
+msgid "Actif"
+msgstr "نشط"
+ 
+msgid "Débloquez toutes les fonctionnalités avancées"
+msgstr "افتح جميع الميزات المتقدمة"
+ 
+msgid "Passer Pro - 20 MAD/an"
+msgstr "فتح حساب احترافي - 20 درهم/سنة"
+ 
+msgid "Dons Planifiés"
+msgstr "تبرعات مجدولة"
+ 
+msgid "Automatiques actifs"
+msgstr "التلقائية المفعّلة"
+ 
+msgid "Par cycle"
+msgstr "لكل دورة"
+ 
+msgid "Membre actif"
+msgstr "عضو نشط"
+ 
+msgid "Planificateur Automatique"
+msgstr "المجدول التلقائي"
+ 
+msgid "Programmez vos dons pour qu'ils soient effectués automatiquement selon votre fréquence préférée."
+msgstr "قم بجدولة تبرعاتك ليتم تنفيذها تلقائيًا وفق الوتيرة التي تفضلها."
+ 
+msgid "Nouveau Don Automatique"
+msgstr "تبرع تلقائي جديد"
+ 
+msgid "Mes Dons Automatiques"
+msgstr "تبرعاتي التلقائية"
+ 
+msgid "Fréquence"
+msgstr "الوتيرة"
+ 
+msgid "Prochaine Exécution"
+msgstr "التنفيذ القادم"
+ 
+msgid "Actions"
+msgstr "إجراءات"
+ 
+msgid "Hebdomadaire"
+msgstr "أسبوعي"
+ 
+msgid "Mensuel"
+msgstr "شهري"
+ 
+msgid "Fonctionnalités Pro"
+msgstr "ميزات احترافية"
+#: zakat360/zakat360/templates/subscriptions/index.html:180
+msgid "Statistiques Avancées"
+msgstr "إحصاءات متقدمة"
+ 
+#: zakat360/zakat360/templates/subscriptions/index.html:181
+msgid "Analyses détaillées de vos dons"
+msgstr "تحليلات مفصلة لتبرعاتك"
+ 
+#: zakat360/zakat360/templates/subscriptions/index.html:191
+msgid "Notifications Personnalisées"
+msgstr "إشعارات مخصصة"
+ 
+#: zakat360/zakat360/templates/subscriptions/index.html:192
+msgid "Rappels et alertes sur mesure"
+msgstr "تذكيرات وتنبيهات مصممة خصيصًا"
+ 
+#: zakat360/zakat360/templates/subscriptions/index.html:202
+msgid "Objectifs de Don"
+msgstr "أهداف التبرع"
+ 
+#: zakat360/zakat360/templates/subscriptions/index.html:203
+msgid "Fixez et suivez vos objectifs"
+msgstr "حدّد وتتبع أهدافك"
+ 
+#: zakat360/zakat360/templates/subscriptions/index.html:210
+msgid "Débloquer Pro - 20 MAD/an"
+msgstr "فتح حساب احترافي - 20 درهم/سنة"
+ 
+# Admin texts
+#: zakat360/zakat360/templates/admin/index.html:6
+msgid "Administration"
+msgstr "الإدارة"
+ 
+#: zakat360/zakat360/templates/admin/index.html:16
+msgid "Total enregistrements"
+msgstr "إجمالي السجلات"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:10
+msgid "Retour"
+msgstr "رجوع"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:26
+msgid "Nom"
+msgstr "الاسم"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:26
+msgid "Objectif"
+msgstr "الهدف"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:26
+msgid "Collecté"
+msgstr "المجموع"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:26
+msgid "Active"
+msgstr "مفعل"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:34
+msgid "Oui"
+msgstr "نعم"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:34
+msgid "Non"
+msgstr "لا"
+ 
+#: zakat360/zakat360/templates/admin/causes.html:38
+msgid "Basculer"
+msgstr "تبديل"
+ 
+# Base title
+#: zakat360/zakat360/templates/base.html:6
+msgid "Zakat360 - Plateforme de Dons"
+msgstr "زكات360 - منصة التبرعات"
+
+#: zakat360/zakat360/templates/index.html:63
+#: zakat360/zakat360/templates/zakat/form.html:3
+#: zakat360/zakat360/templates/zakat/form.html:8
+msgid "Calculateur de Zakat"
+msgstr "حاسبة الزكاة"
+
+#: zakat360/zakat360/templates/index.html:65
+msgid "Accès aux causes"
+msgstr "الوصول إلى القضايا"
+
+#: zakat360/zakat360/templates/auth/login.html:57
+#: zakat360/zakat360/templates/auth/register.html:48
+#: zakat360/zakat360/templates/index.html:68
+msgid "S'inscrire"
+msgstr "إنشاء حساب"
+
+#: zakat360/zakat360/templates/index.html:83
+msgid "Rapports fiscaux détaillés"
+msgstr "تقارير ضريبية مفصلة"
+
+#: zakat360/zakat360/templates/index.html:115
+msgid "Causes soutenues"
+msgstr "القضايا المدعومة"
+
+#: zakat360/zakat360/templates/admin/causes.html:3
+#, fuzzy
+msgid "Admin - Causes"
+msgstr "عرض القضايا"
+
+#: zakat360/zakat360/templates/admin/causes.html:8
+#, fuzzy
+msgid "Gestion des Causes"
+msgstr "عرض القضايا"
+
+#: zakat360/zakat360/templates/admin/causes.html:20
+msgid "Créer"
+msgstr "إنشاء"
+
+#: zakat360/zakat360/templates/admin/index.html:3
+msgid "Admin"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/login.html:23
+#: zakat360/zakat360/templates/auth/register.html:31
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: zakat360/zakat360/templates/auth/login.html:26
+#: zakat360/zakat360/templates/auth/register.html:34
+msgid "votre@email.com"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/login.html:31
+#: zakat360/zakat360/templates/auth/register.html:39
+msgid "Mot de passe"
+msgstr "كلمة المرور"
+
+#: zakat360/zakat360/templates/auth/login.html:40
+#: zakat360/zakat360/templates/auth/register.html:65
+msgid "Se connecter"
+msgstr "تسجيل الدخول"
+
+#: zakat360/zakat360/templates/auth/login.html:57
+msgid "Pas encore de compte ?"
+msgstr "ليس لديك حساب بعد؟"
+
+#: zakat360/zakat360/templates/auth/profile.html:3
+#, fuzzy
+msgid "Mon Profil"
+msgstr "الملف الشخصي"
+
+#: zakat360/zakat360/templates/auth/profile.html:8
+#, fuzzy
+msgid "Informations Profil"
+msgstr "4. معلوماتك"
+
+#: zakat360/zakat360/templates/auth/profile.html:64
+msgid "Votre compte est lié à"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:64
+msgid "Vous n'avez pas besoin de mot de passe."
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:71
+msgid "Mot de passe actuel"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:77
+msgid "Nouveau mot de passe"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:81
+msgid "Confirmer le nouveau mot de passe"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:105
+msgid "Exporter mes données"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:108
+msgid "Exporter (JSON)"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:114
+msgid "Supprimer mon compte"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:116
+msgid ""
+"Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est "
+"irréversible."
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/profile.html:119
+msgid "Supprimer définitivement"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/register.html:59
+msgid "S'inscrire avec Google"
+msgstr ""
+
+#: zakat360/zakat360/templates/auth/register.html:65
+msgid "Déjà un compte ?"
+msgstr ""
+
+#: zakat360/zakat360/templates/dashboard/index.html:21
+msgid "Montant total collecté"
+msgstr ""
+
+# Donations index
+#: zakat360/zakat360/templates/dashboard/index.html:34
+msgid "Nombre de dons"
+msgstr "عدد التبرعات"
+
+#: zakat360/zakat360/templates/dashboard/index.html:47
+#, fuzzy
+msgid "Causes actives"
+msgstr "القضايا"
+
+#: zakat360/zakat360/templates/dashboard/index.html:60
+msgid "Utilisateurs"
+msgstr ""
+
+#: zakat360/zakat360/templates/dashboard/index.html:74
+msgid "Top causes (collecte)"
+msgstr ""
+
+#: zakat360/zakat360/templates/dashboard/index.html:87
+#, fuzzy
+msgid "Aucune cause disponible."
+msgstr "لا توجد قضايا متاحة"
+
+#: zakat360/zakat360/templates/dashboard/index.html:97
+msgid "Dons récents"
+msgstr ""
+
+#: zakat360/zakat360/templates/dashboard/index.html:105
+#: zakat360/zakat360/templates/donations/mine.html:30
+#: zakat360/zakat360/templates/donations/mine.html:60
+#: zakat360/zakat360/templates/donations/mine.html:72
+#: zakat360/zakat360/templates/subscriptions/index.html:107
+msgid "Cause"
+msgstr "القضية"
+
+#: zakat360/zakat360/templates/dashboard/index.html:106
+#: zakat360/zakat360/templates/subscriptions/index.html:108
+#: zakat360/zakat360/templates/subscriptions/schedule.html:50
+#, fuzzy
+msgid "Montant"
+msgstr "مبلغ آخر"
+
+#: zakat360/zakat360/templates/dashboard/index.html:107
+#, fuzzy
+msgid "Donateur"
+msgstr "اسم المتبرع"
+
+#: zakat360/zakat360/templates/dashboard/index.html:108
+#: zakat360/zakat360/templates/donations/mine.html:71
+msgid "Date"
+msgstr ""
+
+#: zakat360/zakat360/templates/dashboard/index.html:124
+#, fuzzy
+msgid "Aucun don pour le moment."
+msgstr "لا توجد تبرعات حالياً"
+
+#: zakat360/zakat360/templates/dashboard/index.html:136
+msgid "Dons par mois (année courante)"
+msgstr ""
+
+# Causes page
+#: zakat360/zakat360/templates/donations/causes.html:9
+#: zakat360/zakat360/templates/donations/causes.html:35
+msgid "Soutenir"
+msgstr "ادعم"
+
+#: zakat360/zakat360/templates/donations/causes.html:16
+msgid "Catégorie"
+msgstr "الفئة"
+
+#: zakat360/zakat360/templates/donations/causes.html:17
+msgid "ex: Santé, Éducation"
+msgstr "مثال: الصحة، التعليم"
+
+#: zakat360/zakat360/templates/donations/causes.html:20
+msgid "Filtrer"
+msgstr "تصفية"
+
+#: zakat360/zakat360/templates/donations/causes.html:32
+msgid "Catégorie:"
+msgstr "الفئة:"
+
+#: zakat360/zakat360/templates/donations/causes.html:43
+msgid "Aucune cause trouvée."
+msgstr "لا توجد قضية."
+
+# Donations index
+#: zakat360/zakat360/templates/donations/index.html:3
+#: zakat360/zakat360/templates/donations/index.html:9
+msgid "Liste des Dons"
+msgstr "قائمة التبرعات"
+
+#: zakat360/zakat360/templates/donations/index.html:21
+#: zakat360/zakat360/templates/donations/mine.html:86
+msgid "Cause inconnue"
+msgstr "قضية غير معروفة"
+
+#: zakat360/zakat360/templates/donations/index.html:22
+msgid "Aucune description"
+msgstr "لا توجد وصف"
+
+#: zakat360/zakat360/templates/donations/index.html:28
+msgid "Completed"
+msgstr "مكتمل"
+
+#: zakat360/zakat360/templates/donations/index.html:28
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: zakat360/zakat360/templates/donations/index.html:32
+#: zakat360/zakat360/templates/donations/mine.html:83
+msgid "Date inconnue"
+msgstr "تاريخ غير معروف"
+
+#: zakat360/zakat360/templates/donations/index.html:42
+msgid "Aucun don pour le moment"
+msgstr "لا توجد تبرعات حالياً"
+
+#: zakat360/zakat360/templates/donations/index.html:43
+msgid "Soyez le premier à faire une différence !"
+msgstr "كن الأول في صنع الفرق!"
+
+#: zakat360/zakat360/templates/donations/index.html:45
+msgid "Faire mon Premier Don"
+msgstr "أول تبرع لي"
+
+#: zakat360/zakat360/templates/donations/mine.html:22
+msgid "Date début"
+msgstr ""
+
+#: zakat360/zakat360/templates/donations/mine.html:26
+#, fuzzy
+msgid "Date fin"
+msgstr "تاريخ غير معروف"
+
+#: zakat360/zakat360/templates/donations/mine.html:32
+msgid "Toutes les causes"
+msgstr "عرض القضايا"
+
+#: zakat360/zakat360/templates/donations/mine.html:46
+#: zakat360/zakat360/templates/reports/annual.html:10
+msgid "Exporter CSV"
+msgstr "تصدير CSV"
+
+#: zakat360/zakat360/templates/donations/mine.html:60
+msgid "Toutes"
+msgstr "الكل"
+
+#: zakat360/zakat360/templates/donations/mine.html:73
+msgid "Montant (€)"
+msgstr "المبلغ (€)"
+
+#: zakat360/zakat360/templates/donations/mine.html:74
+#: zakat360/zakat360/templates/subscriptions/index.html:65
+msgid "Statut"
+msgstr "الحالة"
+
+#: zakat360/zakat360/templates/donations/new.html:13
+msgid "Votre générosité change des vies."
+msgstr "كرمكم يغير حياة الكثيرين."
+
+#: zakat360/zakat360/templates/donations/new.html:25
+msgid "1. Choisissez une cause"
+msgstr "1. اختر قضية"
+
+#: zakat360/zakat360/templates/donations/new.html:27
+msgid "Choisir une cause"
+msgstr "اختيار قضية"
+
+#: zakat360/zakat360/templates/donations/new.html:29
+#: zakat360/zakat360/templates/subscriptions/schedule.html:37
+msgid "Sélectionnez une cause..."
+msgstr "اختر قضية..."
+
+#: zakat360/zakat360/templates/donations/new.html:48
+msgid "Collecté"
+msgstr "تم جمع"
+
+#: zakat360/zakat360/templates/donations/new.html:64
+msgid "2. Montant du don"
+msgstr "2. مبلغ التبرع"
+
+#: zakat360/zakat360/templates/donations/new.html:65
+msgid "Combien souhaitez-vous donner ?"
+msgstr "كم تريد أن تتبرع؟"
+
+#: zakat360/zakat360/templates/donations/new.html:77
+msgid "Autre montant"
+msgstr "مبلغ آخر"
+
+#: zakat360/zakat360/templates/donations/new.html:79
+msgid "Montant minimum : 1 €"
+msgstr "الحد الأدنى للمبلغ: 1 يورو"
+
+#: zakat360/zakat360/templates/donations/new.html:84
+msgid "3. Moyen de paiement"
+msgstr "3. وسيلة الدفع"
+
+#: zakat360/zakat360/templates/donations/new.html:90
+msgid "Carte Bancaire"
+msgstr "بطاقة بنكية"
+
+#: zakat360/zakat360/templates/donations/new.html:97
+msgid "Virement"
+msgstr "تحويل بنكي"
+
+#: zakat360/zakat360/templates/donations/new.html:112
+msgid "4. Vos informations"
+msgstr "4. معلوماتك"
+
+#: zakat360/zakat360/templates/donations/new.html:115
+msgid "Nom du donateur"
+msgstr "اسم المتبرع"
+
+#: zakat360/zakat360/templates/donations/new.html:115
+#: zakat360/zakat360/templates/donations/new.html:122
+msgid "Optionnel"
+msgstr "اختياري"
+
+#: zakat360/zakat360/templates/donations/new.html:118
+msgid "Votre nom ou Anonyme"
+msgstr "اسمك أو مجهول"
+
+#: zakat360/zakat360/templates/donations/new.html:122
+msgid "Preuve du don"
+msgstr "إثبات التبرع"
+
+#: zakat360/zakat360/templates/donations/new.html:130
+msgid "Je souhaite rester anonyme"
+msgstr "أرغب في البقاء مجهولاً"
+
+#: zakat360/zakat360/templates/donations/new.html:138
+msgid "Annuler"
+msgstr "إلغاء"
+
+#: zakat360/zakat360/templates/donations/new.html:141
+msgid "Confirmer le Don"
+msgstr "تأكيد التبرع"
+
+#: zakat360/zakat360/templates/donations/new.html:147
+msgid "Paiement sécurisé"
+msgstr "دفع آمن"
+
+#: zakat360/zakat360/templates/donations/new.html:163
+msgid "Aucune cause disponible"
+msgstr "لا توجد قضايا متاحة"
+
+#: zakat360/zakat360/templates/donations/new.html:164
+msgid "Il n'y a pas de causes actives pour le moment."
+msgstr "لا توجد قضايا نشطة في الوقت الحالي."
+
+#: zakat360/zakat360/templates/donations/new.html:167
+msgid "Voir les causes"
+msgstr "عرض القضايا"
+
+#: zakat360/zakat360/templates/donations/new.html:170
+#: zakat360/zakat360/templates/zakat/result.html:9
+msgid "Retour"
+msgstr "عودة"
+
+#: zakat360/zakat360/templates/reports/annual.html:3
+#: zakat360/zakat360/templates/reports/annual.html:8
+msgid "Rapport Annuel"
+msgstr "التقرير السنوي"
+
+#: zakat360/zakat360/templates/reports/annual.html:45
+msgid "Total par cause"
+msgstr "إجمالي حسب القضية"
+
+#: zakat360/zakat360/templates/subscriptions/index.html:3
+msgid "Version Pro"
+msgstr "الإصدار برو"
+
+#: zakat360/zakat360/templates/subscriptions/index.html:17
+msgid "Vous êtes membre Pro jusqu'au"
+msgstr "أنت عضو برو حتى"
+
+#: zakat360/zakat360/templates/subscriptions/index.html:51
+msgid "Montant Total"
+msgstr "إجمالي المبلغ"
+
+#: zakat360/zakat360/templates/subscriptions/index.html:129
+#: zakat360/zakat360/templates/subscriptions/schedule.html:110
+msgid "Annuel"
+msgstr "سنوي"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:3
+msgid "Planifier un Don Automatique"
+msgstr "تخطيط تبرع تلقائي"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:30
+msgid "Sélection de la cause"
+msgstr "اختيار القضية"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:34
+msgid "Choisir une Cause"
+msgstr "اختر قضية"
+
+# Zakat form labels
+#: zakat360/zakat360/templates/zakat/form.html:16
+msgid "Liquidités (MAD)"
+msgstr "السيولة (درهم)"
+
+#: zakat360/zakat360/templates/zakat/form.html:20
+msgid "Or (grammes)"
+msgstr "الذهب (غرام)"
+
+#: zakat360/zakat360/templates/zakat/form.html:24
+msgid "Argent (grammes)"
+msgstr "الفضة (غرام)"
+
+#: zakat360/zakat360/templates/zakat/form.html:28
+msgid "Investissements (MAD)"
+msgstr "الاستثمارات (درهم)"
+
+#: zakat360/zakat360/templates/zakat/form.html:32
+msgid "Stocks/Inventaire (MAD)"
+msgstr "المخزون/الجرد (درهم)"
+
+#: zakat360/zakat360/templates/zakat/form.html:36
+msgid "Créances (MAD)"
+msgstr "الذمم/الديون المستحقة (درهم)"
+
+#: zakat360/zakat360/templates/zakat/form.html:40
+msgid "Dettes court terme (MAD)"
+msgstr "الديون قصيرة الأجل (درهم)"
+
+#: zakat360/zakat360/templates/zakat/form.html:44
+msgid "Base"
+msgstr "الأساس"
+
+#: zakat360/zakat360/templates/zakat/form.html:47
+msgid "Or"
+msgstr "ذهب"
+
+#: zakat360/zakat360/templates/zakat/form.html:48
+msgid "Argent"
+msgstr "فضة"
+
+#: zakat360/zakat360/templates/zakat/form.html:52
+msgid "Calculer"
+msgstr "احسب"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:46
+msgid "Choisissez la cause que vous souhaitez soutenir régulièrement"
+msgstr "اختر القضية التي ترغب بدعمها بشكل منتظم"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:54
+msgid "Montant du Don"
+msgstr "مبلغ التبرع"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:63
+msgid "Montant minimum : 10 MAD"
+msgstr "الحد الأدنى للمبلغ: 10 درهم"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:128
+msgid "Vous pouvez modifier ou annuler vos dons planifiés à tout moment"
+msgstr "يمكنك تعديل أو إلغاء التبرعات المجدولة في أي وقت"
+
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:56
+msgid "Fixez et suivez vos objectifs annuels"
+msgstr "حدد وتابع أهدافك السنوية"
+ 
+# Upgrade page strings
+msgid "Passez à la Version Pro"
+msgstr "الترقية إلى الإصدار برو"
+ 
+msgid "Débloquez toutes les fonctionnalités avancées pour seulement 20 MAD par an"
+msgstr "افتح جميع الميزات المتقدمة مقابل 20 درهم فقط سنويًا"
+ 
+msgid "MAD/an"
+msgstr "درهم/سنة"
+ 
+msgid "Abonnement symbolique"
+msgstr "اشتراك رمزي"
+ 
+msgid "Fonctionnalités incluses :"
+msgstr "الميزات المشمولة:"
+ 
+msgid "Analyses détaillées de vos contributions"
+msgstr "تحليلات مفصلة لمساهماتك"
+ 
+msgid "Objectifs de Don"
+msgstr "أهداف التبرع"
+ 
+msgid "Support Prioritaire"
+msgstr "دعم أولوية"
+ 
+msgid "Assistance dédiée aux membres Pro"
+msgstr "مساعدة مخصصة لأعضاء برو"
+ 
+msgid "Nouvelles Fonctionnalités"
+msgstr "ميزات جديدة"
+ 
+msgid "Accès anticipé aux nouveautés"
+msgstr "وصول مبكر إلى المستجدات"
+ 
+msgid "Devenir Membre Pro - 20 MAD"
+msgstr "أصبح عضو برو - 20 درهم"
+
+msgid "DH/an"
+msgstr "درهم/سنة"
+ 
+msgid "Paiement sécurisé • Annulation possible à tout moment"
+msgstr "دفع آمن • إمكانية الإلغاء في أي وقت"
+ 
+msgid "Le planificateur automatique m'aide à être régulier dans mes dons. C'est formidable !"
+msgstr "يساعدني المجدول التلقائي على الانتظام في التبرعات. هذا رائع!"
+ 
+msgid "Ahmed, membre Pro"
+msgstr "أحمد، عضو برو"
+ 
+msgid "Fatima, membre Pro"
+msgstr "فاطمة، عضو برو"
+ 
+msgid "Questions Fréquentes"
+msgstr "أسئلة شائعة"
+ 
+msgid "Pourquoi un abonnement payant ?"
+msgstr "لماذا اشتراك مدفوع؟"
+ 
+msgid "Puis-je annuler mon abonnement ?"
+msgstr "هل يمكنني إلغاء اشتراكي؟"
+ 
+msgid "Oui, vous pouvez annuler votre abonnement à tout moment. Vous conserverez l'accès aux fonctionnalités Pro jusqu'à la fin de votre période d'abonnement."
+msgstr "نعم، يمكنك إلغاء اشتراكك في أي وقت. ستحتفظ بالوصول إلى ميزات برو حتى نهاية فترة اشتراكك."
+ 
+msgid "Comment fonctionne le planificateur automatique ?"
+msgstr "كيف يعمل المجدول التلقائي؟"
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:79
+msgid "Abonnement symbolique :"
+msgstr "اشتراك رمزي:"
+
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:79
+msgid "\nCe montant modique nous aide à maintenir et améliorer la plateforme pour \n" "tous."
+msgstr "\nيساعدنا هذا المبلغ الرمزي على تشغيل وتحسين المنصة للجميع."
+
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:122
+msgid "Les statistiques m'aident à mieux planifier mes contributions annuelles."
+msgstr "تساعدني الإحصائيات على التخطيط بشكل أفضل لمساهماتي السنوية."
+
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:147
+msgid ""
+"L'abonnement symbolique de 20 MAD par an nous aide à maintenir les "
+"serveurs, développer de nouvelles fonctionnalités et offrir un support de"
+" qualité. C'est un montant minimal qui assure la pérennité de la "
+"plateforme."
+msgstr ""
+"يساعد الاشتراك الرمزي بقيمة 20 درهم سنويًا في تشغيل الخوادم وتطوير الميزات الجديدة وتقديم دعمٍ بجودة عالية. إنه مبلغٌ بسيط يضمن استمرارية المنصة."
+
+#: zakat360/zakat360/templates/subscriptions/upgrade.html:171
+msgid ""
+"Vous définissez le montant, la cause et la fréquence (hebdomadaire, "
+"mensuelle ou annuelle). Le système effectue automatiquement vos dons "
+"selon votre planning, vous permettant de maintenir une régularité dans "
+"vos contributions."
+msgstr ""
+"تُحدد المبلغ والقضية والتكرار (أسبوعي، شهري أو سنوي). ينفذ النظام تبرعاتك تلقائيًا حسب الخطة، مما يساعدك على الحفاظ على انتظام مساهماتك."
+
+#: zakat360/zakat360/templates/zakat/result.html:3
+msgid "Résultat Zakat"
+msgstr "نتيجة الزكاة"
+
+#: zakat360/zakat360/templates/zakat/result.html:34
+#, python-format
+msgid "Zakat due (2,5%%)"
+msgstr "الزكاة المستحقة (2,5%%)"
+
+#: zakat360/zakat360/templates/zakat/result.html:44
+msgid "Distribuer ma Zakat"
+msgstr "توزيع زكاتي"
+
+# Subscriptions schedule – newly wrapped strings
+#: zakat360/zakat360/templates/subscriptions/schedule.html:72
+msgid "Fréquence de Don"
+msgstr "وتيرة التبرع"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:82
+msgid "Hebdomadaire"
+msgstr "أسبوعي"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:83
+msgid "Chaque semaine"
+msgstr "كل أسبوع"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:96
+msgid "Mensuel"
+msgstr "شهري"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:97
+msgid "Chaque mois"
+msgstr "كل شهر"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:111
+msgid "Chaque année"
+msgstr "كل سنة"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:121
+msgid "Comment ça fonctionne ?"
+msgstr "كيف يعمل ذلك؟"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:124
+msgid "Votre don sera automatiquement effectué selon la fréquence choisie"
+msgstr "سيتم تنفيذ تبرعك تلقائيًا وفق الوتيرة التي اخترتها"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:125
+msgid "Vous recevrez une notification avant chaque don automatique"
+msgstr "ستتلقى إشعارًا قبل كل تبرع تلقائي"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:127
+msgid "Les dons automatiques sont considérés comme payés lors de leur exécution"
+msgstr "يُعتبر التبرع التلقائي مدفوعًا عند تنفيذه"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:137
+msgid "Programmer le Don"
+msgstr "جدولة التبرع"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:156
+msgid "Automatique"
+msgstr "تلقائي"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:157
+msgid "Plus besoin d'y penser, vos dons sont effectués automatiquement"
+msgstr "لا حاجة للتفكير، تُنفَّذ تبرعاتك تلقائيًا"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:165
+msgid "Régulier"
+msgstr "منتظم"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:166
+msgid "Maintenez une régularité dans vos contributions caritatives"
+msgstr "حافظ على انتظام مساهماتك الخيرية"
+
+#: zakat360/zakat360/templates/subscriptions/schedule.html:174
+msgid "Flexible"
+msgstr "مرن"
+
+# Zakat form explanations
+#: zakat360/zakat360/templates/zakat/form.html:60
+msgid "Explications sur la Zakat"
+msgstr "شروحات حول الزكاة"
+
+#: zakat360/zakat360/templates/zakat/form.html:63
+msgid "La Zakat est un pilier de l’Islam. Elle consiste à donner 2,5%% de la richesse nette éligible, lorsque celle-ci atteint le nisab pendant une année lunaire."
+msgstr "الزكاة ركن من أركان الإسلام. وهي إخراج ٢٫٥%% من الثروة الصافية المؤهلة عندما تبلغ النصاب خلال سنة قمرية."
+
+#: zakat360/zakat360/templates/zakat/form.html:66
+msgid "Qu’est-ce que le nisab ?"
+msgstr "ما هو النصاب؟"
+
+#: zakat360/zakat360/templates/zakat/form.html:67
+msgid "Seuil minimum de richesse rendant la Zakat obligatoire. Vous pouvez choisir la base Or ou Argent. Le calcul se fait selon les prix du jour affichés."
+msgstr "هو الحد الأدنى من الثروة التي توجب الزكاة. يمكنك اختيار أساس الذهب أو الفضة. يتم الحساب وفق أسعار اليوم المعروضة."
+
+#: zakat360/zakat360/templates/zakat/form.html:69
+msgid "Base Or : ~85 g d’or"
+msgstr "أساس الذهب: نحو ٨٥ غرامًا من الذهب"
+
+#: zakat360/zakat360/templates/zakat/form.html:70
+msgid "Base Argent : ~595 g d’argent"
+msgstr "أساس الفضة: نحو ٥٩٥ غرامًا من الفضة"
+
+#: zakat360/zakat360/templates/zakat/form.html:74
+msgid "Que faut-il inclure dans l’assiette ?"
+msgstr "ما الذي يدخل في وعاء الزكاة؟"
+
+#: zakat360/zakat360/templates/zakat/form.html:76
+msgid "Liquidités, or/argent, investissements licites, stock marchand, créances recouvrables"
+msgstr "السيولة، الذهب/الفضة، الاستثمارات المباحة، المخزون التجاري، الذمم القابلة للتحصيل"
+
+#: zakat360/zakat360/templates/zakat/form.html:77
+msgid "À déduire : dettes exigibles à court terme"
+msgstr "يُطرح: الديون المستحقة قصيرة الأجل"
+
+#: zakat360/zakat360/templates/zakat/form.html:78
+msgid "Exclus : résidence principale, biens d’usage, retraite bloquée, outils de travail"
+msgstr "لا يدخل: السكن الرئيسي، الممتلكات المستعملة، التقاعد المحجوز، أدوات العمل"
+
+#: zakat360/zakat360/templates/zakat/form.html:84
+msgid "Taux et échéance"
+msgstr "النسبة والاستحقاق"
+
+#: zakat360/zakat360/templates/zakat/form.html:85
+msgid "Le taux est de 2,5%% (1/40e) sur la richesse nette éligible au terme d’une année lunaire (hawl)."
+msgstr "النسبة ٢٫٥%% (واحد من أربعين) من الثروة الصافية المؤهلة عند نهاية سنة قمرية (حول)."
+
+#: zakat360/zakat360/templates/zakat/form.html:88
+msgid "Conseils pratiques"
+msgstr "نصائح عملية"
+
+#: zakat360/zakat360/templates/zakat/form.html:90
+msgid "Fixez une date annuelle de Zakat et conservez un registre."
+msgstr "حدّد تاريخًا سنويًا للزكاة واحتفظ بسجل."
+
+#: zakat360/zakat360/templates/zakat/form.html:91
+msgid "La base Argent est plus inclusive ; la base Or est souvent utilisée."
+msgstr "أساس الفضة أشمل؛ ويُستخدم أساس الذهب غالبًا."
+
+#: zakat360/zakat360/templates/zakat/form.html:92
+msgid "Voir la page À propos pour la méthodologie détaillée."
+msgstr "انظر صفحة عن الموقع للمنهجية التفصيلية."
+
+#: zakat360/zakat360/templates/zakat/form.html:96
+msgid "En savoir plus"
+msgstr "معرفة المزيد"
+ 
+msgid "Comment la Zakat"
+msgstr "كيف تعمل الزكاة"
+ 
+msgid "Appel à l’action"
+msgstr "دعوة للعمل"
+ 
+msgid "Pourquoi"
+msgstr "لماذا"
+
+msgid "Dons planifiés automatiques"
+msgstr "تبرعات مجدولة تلقائية"
+
+msgid "Badge Donateur Pro"
+msgstr "شارة المتبرع المحترف"

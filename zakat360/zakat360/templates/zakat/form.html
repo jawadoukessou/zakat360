@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Calculateur de Zakat') }} - Zakat360{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+<h1 class="h3 icon-title"><span class="emoji-badge">🧮</span>{{ _('Calculateur de Zakat') }}</h1>
+    </div>
+</div>
+
+<form method="POST" action="{{ url_for('zakat.compute') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Liquidités (MAD)') }}</label>
+            <input type="number" step="0.01" min="0" name="cash_mad" class="form-control" required>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Or (grammes)') }}</label>
+            <input type="number" step="0.01" min="0" name="gold_g" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Argent (grammes)') }}</label>
+            <input type="number" step="0.01" min="0" name="silver_g" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Investissements (MAD)') }}</label>
+            <input type="number" step="0.01" min="0" name="investments_mad" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Stocks/Inventaire (MAD)') }}</label>
+            <input type="number" step="0.01" min="0" name="inventory_mad" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Créances (MAD)') }}</label>
+            <input type="number" step="0.01" min="0" name="receivables_mad" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Dettes court terme (MAD)') }}</label>
+            <input type="number" step="0.01" min="0" name="dettes_ct" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">{{ _('Base') }}</label>
+            <select class="form-select" name="basis">
+                <option value="or">{{ _('Or') }}</option>
+                <option value="argent">{{ _('Argent') }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="mt-4">
+        <button class="btn btn-primary" type="submit"><i class="fas fa-equals me-2"></i>{{ _('Calculer') }}</button>
+    </div>
+</form>
+
+<!-- Bloc d'explications sur la Zakat -->
+<div class="card mt-4 shadow-sm">
+    <div class="card-header d-flex align-items-center">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>{{ _('Explications sur la Zakat') }}</strong>
+    </div>
+    <div class="card-body">
+        <p class="mb-3">{{ _('La Zakat est un pilier de l’Islam. Elle consiste à donner 2,5%% de la richesse nette éligible, lorsque celle-ci atteint le nisab pendant une année lunaire.') }}</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-2">{{ _('Qu’est-ce que le nisab ?') }}</h6>
+                <p class="mb-2">{{ _('Seuil minimum de richesse rendant la Zakat obligatoire. Vous pouvez choisir la base Or ou Argent. Le calcul se fait selon les prix du jour affichés.') }}</p>
+                <ul class="mb-3">
+                    <li>{{ _('Base Or : ~85 g d’or') }}</li>
+                    <li>{{ _('Base Argent : ~595 g d’argent') }}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-2">{{ _('Que faut-il inclure dans l’assiette ?') }}</h6>
+                <ul class="mb-2">
+                    <li>{{ _('Liquidités, or/argent, investissements licites, stock marchand, créances recouvrables') }}</li>
+                    <li>{{ _('À déduire : dettes exigibles à court terme') }}</li>
+                    <li>{{ _('Exclus : résidence principale, biens d’usage, retraite bloquée, outils de travail') }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-2">{{ _('Taux et échéance') }}</h6>
+                <p class="mb-2">{{ _('Le taux est de 2,5%% (1/40e) sur la richesse nette éligible au terme d’une année lunaire (hawl).') }}</p>
+            </div>
+            <div class="col-md-6">
+                <h6 class="fw-bold mb-2">{{ _('Conseils pratiques') }}</h6>
+                <ul class="mb-0">
+                    <li>{{ _('Fixez une date annuelle de Zakat et conservez un registre.') }}</li>
+                    <li>{{ _('La base Argent est plus inclusive ; la base Or est souvent utilisée.') }}</li>
+                    <li>{{ _('Voir la page À propos pour la méthodologie détaillée.') }}</li>
+                </ul>
+            </div>
+        </div>
+        <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary btn-sm mt-3"><i class="fas fa-book me-2"></i>{{ _('En savoir plus') }}</a>
+    </div>
+</div>
+{% endblock %}
