@@ -19,8 +19,8 @@ def create_app():
     basedir = os.path.abspath(os.path.dirname(__file__))
     db_path = os.path.join(basedir, 'zakat360_dev.db')
     # Ensure SQLite URI uses forward slashes on Windows
-    default_db_uri = f"sqlite:///{db_path.replace('\\', '/')}"
-    db_uri = os.environ.get('DATABASE_URL') or default_db_uri
+    default_db_uri = f"sqlite:////{db_path.replace('\\', '/')}"
+    db_uri = "sqlite:////tmp/zakat360.db" or default_db_uri
     upload_dir = os.environ.get('UPLOAD_DIR') or os.path.join(basedir, 'static', 'uploads')
     is_production = os.environ.get('FLASK_ENV') == 'production'
     app.config.update({
